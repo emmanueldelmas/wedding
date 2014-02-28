@@ -6,10 +6,19 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= link_to welcomes_path %>
-<%= yield %>
-
+<body class="main_grey">
+  <div id="head_band" class="main_blue">
+    <ul>
+      <li class="main_link second_blue">
+        <%= link_to "Accueil", welcomes_path %>
+      </li>
+      <li class="main_link second_blue">
+        <%= link_to "Accueil", welcomes_path %>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <%= yield %>
+  </div>
 </body>
 </html>

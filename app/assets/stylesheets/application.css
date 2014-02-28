@@ -9,5 +9,26 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require main.css
+ *= require normalize.css
  *= require_tree .
  */
+
+div#head_band {
+  height:50px;
+  background-color:#1208DA;
+}
+.main_blue { background-color:#1208DA; }
+.second_blue { background-color:#4039D2; }
+
+.main_grey { background-color:#C4C4C4; }
+.second_grey { background-color:#919191; }
+
+
+li.main_link {
+  margin: 2px;
+  padding: 2px;
+  float:left;
+  list-style: none;
+}
+li.main_link a { color:#FFFFFF; }
