@@ -23,6 +23,13 @@ module Wedding
 		
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+    
+    # Generators config
+    config.generators do |g|
+      g.helper            false
+      g.javascripts       false
+      g.test_framework    :rspec, helper_specs: false
+    end
 		
   end
 end
