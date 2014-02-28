@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     yield
     render on_success
   rescue
-    on_rescue ? render on_rescue : redirect welcome_path
+    render on_rescue if on_rescue
+    redirect_to welcome_path
   end
 end

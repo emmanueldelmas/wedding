@@ -14,7 +14,7 @@ development:
   pool: 5
   username: usr1
   password: toto
- host: localhost
+  host: localhost
   socket: /tmp/mysql.sock
 
 test:
