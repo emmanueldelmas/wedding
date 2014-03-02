@@ -5,7 +5,6 @@ production:
   pool: 5
   username: usr1
   password: toto
-  socket: /tmp/mysql.sock
 
 development:
   adapter: mysql2
@@ -15,7 +14,6 @@ development:
   username: usr1
   password: toto
   host: localhost
-  socket: /tmp/mysql.sock
 
 test:
   adapter: mysql2
@@ -25,4 +23,3 @@ test:
   username: usr1
   password: toto
   host: localhost
-  socket: /tmp/mysql.sock

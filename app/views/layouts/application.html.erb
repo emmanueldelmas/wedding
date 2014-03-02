@@ -5,6 +5,18 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApC8568UgUkwrt7DMfNpq0KtxKOwhiTbE&sensor=false&language=fr">
+  </script>
+  <script type="text/javascript">
+    function initialize() {
+      var mapOptions = {
+        center: new google.maps.LatLng(48.807, 2.137),
+        zoom: 12
+      };
+      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
 </head>
 <body class="main_grey">
   <div id="head_band" class="main_blue">
