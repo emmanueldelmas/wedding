@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  def do_and_respond(on_success, on_rescue = nil, &block)
-    yield
+  def do_and_respond(on_success = :index, on_rescue = nil, &block)
+    yield if block_given?
     render on_success
-  rescue
-    render on_rescue if on_rescue
-    redirect_to welcome_path
+  # rescue
+    # render on_rescue if on_rescue
+    # redirect_to welcomes_path 
   end
 end
