@@ -26,9 +26,10 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 
 # Read more: http://www.jplayer.org/
-gem 'jplayer-rails', '~> 2.4.1'
+gem 'jplayer-rails', '~> 2.5.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Not reload the head part, so content_for doesn't work in.
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

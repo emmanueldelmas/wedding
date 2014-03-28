@@ -11,6 +11,7 @@
  *= require_self
  *= require main.css
  *= require normalize.css
+ *= require skin/jplayer.blue.monday.css
  *= require_tree .
  */
 
