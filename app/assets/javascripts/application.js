@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.jplayer
+//= require jplayer.playlist.min.js
 //= require_tree .

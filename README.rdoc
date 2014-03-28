@@ -30,7 +30,7 @@ Rspec test
 Description
 
 Accueil
-Messe
+Messe => Ecoute des mp3 dans l'index; Visualisation de la partition dans show;
 Réception
 Soirée
 Logement
