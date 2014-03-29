@@ -29,7 +29,7 @@ Rspec test
 
 Description
 
-Accueil
+Accueil => se déplacer; participer à la chorale; Faire la fête; se loger; Faire un cadeau; Répondre; poster;
 Messe => Ecoute des mp3 dans l'index; Visualisation de la partition dans show;
 Réception
 Soirée
