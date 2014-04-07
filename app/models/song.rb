@@ -3,22 +3,28 @@
 class Song
   
   SONGS = [
-    {id: 0, name: "", title: "", type: "Procession", author: ""},
-    {id: 1, name: "", title: "", type: "Louange d'entrée", author: ""},
-    {id: 2, name: "", title: "", type: "Kyrie", author: ""},
-    {id: 3, name: "", title: "", type: "Gloria", author: ""},
-    {id: 4, name: "", title: "", type: "Psaume", author: ""},
-    {id: 5, name: "", title: "", type: "Alleluia", author: ""},
-    {id: 6, name: "", title: "", type: "Action de grâce", author: ""},
-    {id: 7, name: "", title: "", type: "Invocation à l'Esprit", author: ""},
-    {id: 8, name: "", title: "", type: "Prière universelle", author: ""},
-    {id: 9, name: "ne_crains_pas", title: "Ne crains pas, Je suis ton Dieu", type: "Offertoire", author: ""},
-    {id: 10, name: "", title: "", type: "Sanctus", author: ""},
-    {id: 11, name: "", title: "", type: "Anamnèse", author: ""},
-    {id: 12, name: "", title: "", type: "Agnus", author: ""},
-    {id: 13, name: "", title: "", type: "Communion", author: ""},
-    {id: 14, name: "", title: "", type: "Louange finale", author: ""},
-  ]
+    {id: 0, name: "sarabande", title: "Sarabande, marche Nuptial", type: "Procession", author: "Heandel"}.freeze,
+    {id: 1, name: "jubilez", title: "Jubilez", type: "Louange d'entrée", author: "Frère Jean-Baptiste"}.freeze,
+    {id: 2, name: "kyrie", title: "Messe de l'Emmanuel - Kyrie", type: "Kyrie", author: "Communauté de l'Emmanuel"}.freeze,
+    {id: 3, name: "gloria", title: "Messe de l'Emmanuel - Gloria", type: "Gloria", author: "Communauté de l'Emmanuel"}.freeze,
+    {id: 4, name: "psaume", title: "Le Seigneur est ma Lumière et mon Salut", type: "Psaume", author: ""}.freeze,
+    {id: 5, name: "alleluia", title: "Messe de l'Emmanuel - Alleluia", type: "Alleluia", author: "Communauté de l'Emmanuel"}.freeze,
+    {id: 5, name: "litanie", title: "Litanie des saints Congolaise", type: "Litanie des saints", author: "Communauté du Chemin Neuf"}.freeze,
+    # {id: 6, name: "", title: "", type: "Action de grâce", author: ""}.freeze,
+    # {id: 7, name: "", title: "", type: "Invocation à l'Esprit", author: ""}.freeze,
+    {id: 8, name: "mendiez", title: "Mendiez l'humilité", type: "Prière universelle", author: ""}.freeze,
+    {id: 9, name: "ne_crains_pas", title: "Ne crains pas, Je suis ton Dieu", type: "Offertoire", author: "Frère Jean-Baptiste"}.freeze,
+    {id: 10, name: "sanctus", title: "Messe de l'Emmanuel - Sanctus", type: "Sanctus", author: "Communauté de l'Emmanuel"}.freeze,
+    {id: 11, name: "anamnese", title: "Messe de l'Emmanuel - Anamnèse", type: "Anamnèse", author: "Communauté de l'Emmanuel"}.freeze,
+    {id: 12, name: "agnus", title: "Messe de l'Emmanuel - Agnus", type: "Agnus", author: "Communauté de l'Emmanuel"}.freeze,
+    # {id: 13, name: "", title: "", type: "Communion", author: ""}.freeze,
+    # {id: 14, name: "chant_promesse", title: "Chant de la promesse", type: "Promesse scout", author: "Père Jacques Sevin"}.freeze,
+    # {id: 14, name: "", title: "", type: "Louange finale", author: ""}.freeze,
+  ].freeze
+
+  def self.all
+  	SONGS
+  end
 
   def self.find(id)
   	SONGS[id]

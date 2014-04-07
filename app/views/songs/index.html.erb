@@ -8,35 +8,7 @@ $(document).ready(function(){
 		cssSelectorAncestor: "#jp_container_1"
 	}, [
 		{
-			title:"Grande Torino",
-			mp3: "/audios/grande_torino.mp3",
-			oga: "/audios/grande_torino.ogg"
-		},
-		{
-			title:"Ne crains pas",
-			mp3:"/audios/ne_crains_pas.mp3",
-			oga:"/audios/ne_crains_pas.ogg"
-		},
-		{
-			title:"Cyber Sonnet",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg"
-		},
-		{
-			title:"Tempered Song",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
-		},
-		{
-			title:"Hidden",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg"
-		},
-		{
-			title:"Lentement",
-			free:true,
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg"
+			<%= Song.all.collect{|song| %Q{title:\"#{song[:title]}\", mp3:\"#{audio_path(song[:name]+".mp3")}\", oga:\"#{audio_path(song[:name]+".ogg")}\	"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
 		}
 	], {
 		swfPath: "../js",
