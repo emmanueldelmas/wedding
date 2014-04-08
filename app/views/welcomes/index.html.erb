@@ -8,7 +8,7 @@
   </iframe>
 </div>
 <div>
-  <h2>Participer à la chorale</h2>
+  <h2><%= link_to("Participer à la chorale", songs_path) %></h2>
  	<%= render(partial: "songs/song", locals: {song: @song}) %>
 </div>
 <div>

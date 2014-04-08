@@ -1,31 +1,36 @@
 <% content_for :script do %>
-
 <script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-	new jPlayerPlaylist({
-		jPlayer: "#jquery_jplayer_1",
-		cssSelectorAncestor: "#jp_container_1"
-	}, [
-		{
-			<%= Song.all.collect{|song| %Q{title:\"#{song[:title]}\", mp3:\"#{audio_path(song[:name]+".mp3")}\", oga:\"#{audio_path(song[:name]+".ogg")}\	"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
-		}
-	], {
-		swfPath: "../js",
-		supplied: "oga, mp3",
-		wmode: "window",
-		smoothPlayBar: true,
-		keyEnabled: true
+	$(document).ready(function(){
+		new jPlayerPlaylist({
+			jPlayer: "#jquery_jplayer_1",
+			cssSelectorAncestor: "#jp_container_1"
+		}, [
+			{
+				<%= Song.all.collect{|song| %Q{title:\"#{song.title}\", mp3:\"#{audio_path(song.name+".mp3")}\", oga:\"#{audio_path(song.name+".ogg")}\	"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
+			}
+		], {
+			swfPath: "../js",
+			supplied: "oga, mp3",
+			wmode: "window",
+			smoothPlayBar: true,
+			keyEnabled: true
+		});
 	});
-});
-//]]>
+	$(document).ready(function(){
+		$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(){
+			$name = $("#jp_audio_0").attr('src').split(/\//).pop().split(/\./).shift();
+			$("div.words").hide();
+			$("div.words#"+$name).show();
+		});
+	});
 </script>
-
 <% end %>
 
 <h1>Chant de la messe</h1>
 <p>Participer à la chorale</p>
-<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+<div id="jquery_jplayer_1" class="jp-jplayer">
+# <audio id="jp_audio_0" preload="metadata" src="http://127.0.0.1:3000/audios/sarabande.ogg"></audio>
+</div>
 <div id="jp_container_1" class="jp-audio">
 	<div class="jp-type-playlist">
 		<div class="jp-gui jp-interface">
@@ -67,5 +72,10 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+<% Song.all.each do |song| %>
+<div class="words" id="<%= song.name %>">
+	<%= render(partial: "words", locals: {id: song.id}) %>
+</div>
+<% end %>
 
 

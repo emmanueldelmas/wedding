@@ -1,25 +1,34 @@
 # coding: utf-8
 
 class Song
+	attr_reader :id, :name, :title, :type, :author
   
+	def initialize(id, name, title, type, author)
+		@id = id
+		@name = name
+		@title = title
+		@type = type
+		@author = author
+	end
+
   SONGS = [
-    {id: 0, name: "sarabande", title: "Sarabande, marche Nuptial", type: "Procession", author: "Heandel"}.freeze,
-    {id: 1, name: "jubilez", title: "Jubilez", type: "Louange d'entrée", author: "Frère Jean-Baptiste"}.freeze,
-    {id: 2, name: "kyrie", title: "Messe de l'Emmanuel - Kyrie", type: "Kyrie", author: "Communauté de l'Emmanuel"}.freeze,
-    {id: 3, name: "gloria", title: "Messe de l'Emmanuel - Gloria", type: "Gloria", author: "Communauté de l'Emmanuel"}.freeze,
-    {id: 4, name: "psaume", title: "Le Seigneur est ma Lumière et mon Salut", type: "Psaume", author: ""}.freeze,
-    {id: 5, name: "alleluia", title: "Messe de l'Emmanuel - Alleluia", type: "Alleluia", author: "Communauté de l'Emmanuel"}.freeze,
-    {id: 5, name: "litanie", title: "Litanie des saints Congolaise", type: "Litanie des saints", author: "Communauté du Chemin Neuf"}.freeze,
-    # {id: 6, name: "", title: "", type: "Action de grâce", author: ""}.freeze,
-    # {id: 7, name: "", title: "", type: "Invocation à l'Esprit", author: ""}.freeze,
-    {id: 8, name: "mendiez", title: "Mendiez l'humilité", type: "Prière universelle", author: ""}.freeze,
-    {id: 9, name: "ne_crains_pas", title: "Ne crains pas, Je suis ton Dieu", type: "Offertoire", author: "Frère Jean-Baptiste"}.freeze,
-    {id: 10, name: "sanctus", title: "Messe de l'Emmanuel - Sanctus", type: "Sanctus", author: "Communauté de l'Emmanuel"}.freeze,
-    {id: 11, name: "anamnese", title: "Messe de l'Emmanuel - Anamnèse", type: "Anamnèse", author: "Communauté de l'Emmanuel"}.freeze,
-    {id: 12, name: "agnus", title: "Messe de l'Emmanuel - Agnus", type: "Agnus", author: "Communauté de l'Emmanuel"}.freeze,
-    # {id: 13, name: "", title: "", type: "Communion", author: ""}.freeze,
-    # {id: 14, name: "chant_promesse", title: "Chant de la promesse", type: "Promesse scout", author: "Père Jacques Sevin"}.freeze,
-    # {id: 14, name: "", title: "", type: "Louange finale", author: ""}.freeze,
+    # Song.new(0, "sarabande", "Sarabande, marche Nuptial", "Procession", "Heandel"),
+    # Song.new(1, "jubilez", "Jubilez", "Louange d'entrée", "Frère Jean-Baptiste"),
+    Song.new(2, "kyrie", "Messe de l'Emmanuel - Kyrie", "Kyrie", "Communauté de l'Emmanuel"),
+    Song.new(3, "gloria", "Messe de l'Emmanuel - Gloria", "Gloria", "Communauté de l'Emmanuel"),
+    Song.new(4, "psaume", "Le Seigneur est ma Lumière et mon Salut", "Psaume", ""),
+    Song.new(5, "alleluia", "Messe de l'Emmanuel - Alleluia", "Alleluia", "Communauté de l'Emmanuel"),
+    Song.new(5, "litanie", "Litanie des saints Congolaise", "Litanie des saints", "Communauté du Chemin Neuf"),
+    # Song.new(6, "", "", "Action de grâce", ""),
+    # Song.new(7, "", "", "Invocation à l'Esprit", ""),
+    Song.new(8, "mendiez", "Mendiez l'humilité", "Prière universelle", ""),
+    Song.new(9, "ne_crains_pas", "Ne crains pas, Je suis ton Dieu", "Offertoire", "Frère Jean-Baptiste"),
+    Song.new(10, "sanctus", "Messe de l'Emmanuel - Sanctus", "Sanctus", "Communauté de l'Emmanuel"),
+    Song.new(11, "anamnese", "Messe de l'Emmanuel - Anamnèse", "Anamnèse", "Communauté de l'Emmanuel"),
+    Song.new(12, "agnus", "Messe de l'Emmanuel - Agnus", "Agnus", "Communauté de l'Emmanuel"),
+    # Song.new(13, "", "", "Communion", ""),
+    # Song.new(14, "chant_promesse", "Chant de la promesse", "Promesse scout", "Père Jacques Sevin"),
+    # Song.new(14, "", "", "Louange finale", ""),
   ].freeze
 
   def self.all
