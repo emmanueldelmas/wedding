@@ -8,7 +8,10 @@ gem 'bundle'
 gem 'rails', '4.0.3'
 
 # Use mysql2 as the database for Active Record
-gem 'mysql2'
+# gem 'mysql2'
+
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', '~> 1.3.9'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
