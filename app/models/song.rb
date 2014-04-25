@@ -39,4 +39,8 @@ class Song
   	SONGS[id]
   end
 
+  def self.welcome_song
+    find(9)
+  end
+
 end

@@ -4,8 +4,8 @@
     $("#jquery_jplayer_1").jPlayer({
       ready: function () {
         $(this).jPlayer("setMedia", {
-          mp3: "/audios/<%= song[:name] %>.mp3",
-          oga: "/audios/<%= song[:name] %>.ogg"
+          mp3: "/audios/<%= song.name %>.mp3",
+          oga: "/audios/<%= song.name %>.ogg"
         });
       },
       swfPath: "/js",
@@ -46,7 +46,7 @@
 	  </div>
 	  <div class="jp-title">
 	    <ul>
-	      <li><%= song[:title] %></li>
+	      <li><%= song.title %></li>
 	    </ul>
 	  </div>
 	  <div class="jp-no-solution">
