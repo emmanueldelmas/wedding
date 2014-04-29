@@ -1,10 +1,15 @@
+# coding: utf-8
+
+require 'bcrypt'
+
 class User < ActiveRecord::Base
-	before_validation if: :password
+	before_validation :cypher_password, if: :password
 
-
+	def password=(password); @password = password; end
+	def password; @password; end
 
 	def self.create_default_user(password)
-		self.create!(firstname: default, lastname: user, login: "malou&manu", password: password)
+		self.create!(firstname: "default", lastname: "user", login: "malou&manu", password: password)
 	end
 
 	def cypher_password
