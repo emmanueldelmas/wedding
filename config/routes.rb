@@ -1,5 +1,7 @@
 Wedding::Application.routes.draw do
 
+  resources :users
+
   resources :songs
 
   resources :welcomes, only: [:index]
