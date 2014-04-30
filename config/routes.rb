@@ -1,6 +1,15 @@
 Wedding::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    # get "/address", to: "users#new", as: :address
+    # get "/address", to: "users#edit", as: :address
+    # get "/response", to: "users#new", as: :response
+    # get "/response", to: "users#edit", as: :response
+    resources :address, only: [:new, :edit], controller: :users
+    resources :response, only: [:new, :edit], controller: :users
+    collection do
+      post :authenticate
+  end
 
   resources :songs
 

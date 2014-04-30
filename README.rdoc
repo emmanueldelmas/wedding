@@ -44,5 +44,17 @@ Pages de photos
 Page invité
 
 
+User
+
+Dès qu'un utilisateur saisi ses nom et prénom, ceux-ci son sauvegarder dans un cookie sans limite de temps.
+Dès que l'utilisateur saisi le mot de passe, un cookie signalant l'authentification est sauvegardé.
+Dès qu'un utilisateur saisi le super mot de passe, un cookie signalant un admin est sauvegardé.
+
+Un formulaire permet à l'utilisateur de saisir son nom et son adresse ainsi que le nom de son conjoint. + message_adresse
+Un autre formulaire permet à l'utilisateur de saisir son nom et sa présence, ainsi que celle de son conjoint. + message_reponse
+Pouvoir visualiser et exporter les utilisateurs.
+
+
+
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
