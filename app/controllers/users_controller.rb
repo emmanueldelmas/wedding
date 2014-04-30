@@ -3,6 +3,15 @@
 
 class UsersController < ApplicationController
   def new
+    puts "params"
+    puts params
+    @object = params[:object]
+  end
+  
+  def edit
+    puts "params"
+    puts params
+    @object = params[:object]
   end
   
   def create
