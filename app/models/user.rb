@@ -16,13 +16,16 @@
 #  address_add        :string(255)
 #  town               :string(255)
 #  zip_code           :string(255)
-#  message            :text
+#  message_address    :text
 #  created_at         :datetime
 #  updated_at         :datetime
+#  presence           :string(255)
+#  message_response   :string(255)
+#  phone              :string(255)
 #
 
-
 require 'bcrypt'
+require 'yaml'
 
 class String
   def without_accent
@@ -38,9 +41,15 @@ end
 
 class User < ActiveRecord::Base
 	before_validation :cypher_password, if: :password
+	before_validation :set_presence
+
+	attr_accessor :wedding, :cocktail, :dinner, :party
 
 	def password=(password); @password = password; end
 	def password; @password; end
+
+	def set_presence; presence = {wedding: @wedding, cocktail: @cocktail, dinner: @dinner, party: @party}.to_yaml; end
+	def get_presence; YAML.load(presence); end
 
 	def self.create_default_user(password)
 		create!(firstname: "default", lastname: "user", login: "mariage", password: password)

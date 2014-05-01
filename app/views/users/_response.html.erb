@@ -1,2 +1,23 @@
-<h1>Users#_response</h1>
-<p>YES we come !</p>
+<h1>YES we come !</h1>
+<p>Veuillez saisir votre adresse.</p>
+
+<%= form_for @current_user do |f| %>
+	<div class="user_name">
+		<div id="firstname"><%= f.label "Prénom" %><br /><%= f.text_field :firstname %></div>
+		<div id="lastname"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname %></div>
+		<div id="email"><%= f.label "Courriel" %><br /><%= f.email_field :email %></div>
+	</div>
+	<br />
+	<div class="user_response">
+		<div id="wedding"><%= f.label "Mariage" %><br /><%= f.check_box :wedding, {}, true, false %></div>
+		<div id="cocktail"><%= f.label "Cocktail" %><br /><%= f.check_box :cocktail, {}, true, false %></div>
+		<div id="dinner"><%= f.label "Dîner" %><br /><%= f.check_box :dinner, {}, true, false %></div>
+		<div id="party"><%= f.label "Soirée" %><br /><%= f.check_box :party, {}, true, false %></div>
+	</div>
+	<br />
+	<div class="user_message">
+		<div id="message_response"><%= f.label "Message" %><br /><%= f.text_area :message_response %></div>
+	</div>
+	<br />
+	<div class="submit_form" id="submit_address"><%= f.submit "Soumettre" %></div>
+<% end %>

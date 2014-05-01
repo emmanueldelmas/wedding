@@ -1,8 +1,8 @@
 Wedding::Application.routes.draw do
   
-  get "users/new/:object" => "users#new"
-  get "users/:id/edit/:object" => "users#edit"
-  resources :users do
+  get "users/new/:object" => "users#new", as: :new_user
+  get "users/:id/edit/:object" => "users#edit", as: :edit_user 
+  resources :users, except: [:new, :edit] do
     collection do
       post :authenticate
     end

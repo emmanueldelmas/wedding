@@ -14,9 +14,12 @@
 #  address_add        :string(255)
 #  town               :string(255)
 #  zip_code           :string(255)
-#  message            :text
+#  message_address    :text
 #  created_at         :datetime
 #  updated_at         :datetime
+#  presence           :string(255)
+#  message_response   :string(255)
+#  phone              :string(255)
 #
 
 require 'spec_helper'

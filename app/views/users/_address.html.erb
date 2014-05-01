@@ -1,2 +1,25 @@
-<h1>Users#_address</h1>
-<p>Fill your address</p>
+<h1>1 adresse = 1 faire part</h1>
+<p>Veuillez saisir votre adresse.</p>
+
+<%= form_for @current_user do |f| %>
+	<div class="user_name">
+		<div id="firstname"><%= f.label "Prénom" %><br /><%= f.text_field :firstname %></div>
+		<div id="lastname"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname %></div>
+		<div id="email"><%= f.label "Courriel" %><br /><%= f.text_field :email %></div>
+	</div>
+	<br />
+	<div class="user_address">
+		<div id="street"><%= f.label "Numéro_et_intitulé_de_la_voie" %><br /><%= f.text_field :street %></div>
+		<div id="zip_code"><%= f.label "Code_postal" %><br /><%= f.text_field :zip_code %></div>
+		<div id="town"><%= f.label "Ville" %><br /><%= f.text_field :town %></div>
+		<div id="phone"><%= f.label "Téléphone" %><br /><%= f.telephone_field :phone %></div>
+		<br />
+		<div class="address_check_box"><%= check_box_tag :address_check_box %><%= label_tag "Je reconnais les informations ci-dessus comme exacte, et assure être domicilié à cette même adresse jusqu'en septembre 2014." %></div>
+	</div>
+	<br />
+	<div class="user_message">
+		<div id="message_address"><%= f.label "Message" %><br /><%= f.text_area :message_address %></div>
+	</div>
+	<br />
+	<div class="submit_form" id="submit_address"><%= f.submit "Soumettre" %></div>
+<% end %>
