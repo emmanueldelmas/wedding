@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :current_user, :authenticated
+  after_action :current_user, :authenticated
   
 protected
 
@@ -18,10 +19,13 @@ protected
 private
   
   def current_user
-    @current_user ||= session[:current_user_id] && User.find_by(id: session[:current_user_id])
+    cookies.permanent[:current_user_id] = @current_user[:id] if @current_user && @current_user[:id]
+    @current_user ||= cookies[:current_user_id] && User.find_by(id: cookies[:current_user_id])
   end
   
   def authenticated
-    @authenticated ||= session[:authenticated] == "authenticated"
-  end
+    puts ["user and cookies", @authenticated, session[:authenticated]]
+    puts ["user and cookies", @authenticated, session[:authenticated]]
+    session[:authenticated] = @authenticated if @authenticated
+    @authenticated ||= session[:authenticated]
 end

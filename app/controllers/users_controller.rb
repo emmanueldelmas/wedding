@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    puts ["new", params, @current_user]
     return edit if @current_user
     do_and_respond(:new) do
       @current_user = User.new
@@ -22,26 +23,36 @@ class UsersController < ApplicationController
   end
   
   def edit
+    puts ["edit", params, @current_user]
     do_and_respond(:edit, :show) do
       @object = params[:object]
     end
   end
   
   def create
-    puts params
-    return update if User.find_by(User.name_without_accent(params[:user]))
-    do_and_respond(:show) do 
+    puts ["create", params, @current_user]
+    do_and_respond(:show) do
+      puts params[:user]
+      @current_user = User.where(User.name_without_accent(user_params)).first_or_create!(user_params)
     end
   end
   
   def update
-    do_and_respond(:show) do 
+    puts ["update", params, @current_user]
+    do_and_respond(:show) do
+      @current_user.update_attributes!(user_params)
     end
   end
   
   def authenticate
-    User.check_password(params[:password])
-    @current_user = User.find_by(User.name_without_accent(params[:user]))
-    session[:current_user_id] = @current_user[:id]
+    puts params[:password]
+    @authenticated = "authentification de premier niveau" if User.check_password(params[:password])
+    do_and_respond(:index) do
+    end
+  end
+
+private
+  def user_params
+    params.require(:user).permit!
   end
 end

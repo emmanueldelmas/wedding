@@ -41,15 +41,21 @@ end
 
 class User < ActiveRecord::Base
 	before_validation :cypher_password, if: :password
-	before_validation :set_presence
-
-	attr_accessor :wedding, :cocktail, :dinner, :party
+	before_save :set_response
 
 	def password=(password); @password = password; end
 	def password; @password; end
 
-	def set_presence; presence = {wedding: @wedding, cocktail: @cocktail, dinner: @dinner, party: @party}.to_yaml; end
-	def get_presence; YAML.load(presence); end
+	def wedding=(value); response[:wedding] = value; end
+	def cocktail=(value); response[:cocktail] = value; end
+	def dinner=(value); response[:dinner] = value; end
+	def party=(value); response[:party] = value; end
+	def wedding; response[:wedding]; end
+	def cocktail; response[:cocktail]; end
+	def dinner; response[:dinner]; end
+	def party; response[:party]; end
+	def set_response; puts "before_save"; self.presence = self.response.to_yaml; end
+	def response; @response ||= (self.presence ? YAML.load(presence) : {}); end
 
 	def self.create_default_user(password)
 		create!(firstname: "default", lastname: "user", login: "mariage", password: password)
