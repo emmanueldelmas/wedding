@@ -29,19 +29,23 @@ Rspec test
 
 Description
 
-Accueil => se déplacer; participer à la chorale; Faire la fête; se loger; Faire un cadeau; Répondre; poster;
-Messe => Ecoute des mp3 dans l'index; Visualisation de la partition dans show;
-Réception
-Soirée
-Logement
-Photo
-Liste
-RSVP
-Quiz
-Page de connexion
-Pages d’albums
-Pages de photos
-Page invité
+Accueil
+
+Lien vers la carte
+Lien vers l'index des chants
+Lien vers le thème de la soirée
+Lien vers les hotels
+Lien vers la liste de mariage
+lien vers un quiz des mariés
+Lien vers la réponse des invités
+Lien vers les albums photos
+
+
+Song
+
+lecture de mp3 dans l'index avec affichage des paroles du chant en cours
+Téléchargement d'un fichier zip contenant les partitions
+Visualisation de la partition de chaque chant
 
 
 User
@@ -54,6 +58,17 @@ Un formulaire permet à l'utilisateur de saisir son nom et son adresse ainsi que
 Un autre formulaire permet à l'utilisateur de saisir son nom et sa présence, ainsi que celle de son conjoint. + message_reponse
 Pouvoir visualiser et exporter les utilisateurs.
 
+
+Photo
+
+Pouvoir poster une photo.
+Pouvoir poster un zip de photo.
+Pouvoir poster un dossier de photo.
+Pouvoir poster par glisser/déplacer
+
+Pouvoir télécharger un zip de photo
+Pouvoir télécharger une photo
+Pouvoir télécharger un zip de plusieurs photos sélectionner
 
 
 Please feel free to use a different markup language if you do not plan to run
