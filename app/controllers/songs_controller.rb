@@ -2,7 +2,13 @@
 
 class SongsController < ApplicationController
 	def index
-		do_and_respond
+		do_and_respond do
+      if zip_request?
+        @send_file = true
+        @filename = "partitions.zip"
+        @file_path = "#{Rails.root}/public/partitions/#{@filename}"
+      end
+    end
 	end
 	def show
 		do_and_respond(:show, :index) do
@@ -11,7 +17,6 @@ class SongsController < ApplicationController
         @send_file = true
         @filename = @song.filename
         @file_path = "#{Rails.root}/public/partitions/#{@filename}"
-        send_file @file_path, filename: @filename, type: "application/pdf"
       else
   		  @song = Song.find(params[:id].to_i)
       end

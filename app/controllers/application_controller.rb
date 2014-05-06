@@ -10,7 +10,11 @@ protected
 
   def do_and_respond(on_success = :index, on_rescue = nil, &block)
     yield if block_given?
-    if csv_request?
+    if zip_request?
+      if @send_file
+        return send_file @file_path, filename: @filename, type: "application/zip"
+      end
+    elsif csv_request?
     elsif pdf_request?
       if @send_file
         return send_file @file_path, filename: @filename, type: "application/pdf", disposition: "inline"
@@ -46,5 +50,10 @@ private
   def pdf_request?
     @current_uri = request.original_fullpath.split( '?').first
     @current_uri =~ /\.pdf\Z/
+  end
+  
+  def zip_request?
+    @current_uri = request.original_fullpath.split( '?').first
+    @current_uri =~ /\.zip\Z/
   end
 end

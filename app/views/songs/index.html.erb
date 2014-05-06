@@ -28,6 +28,7 @@
 
 <h1>Chant de la messe</h1>
 <p>Participer à la chorale</p>
+<p><%= link_to "Télécharger toutes les partitions", songs_path("zip"), target: "_blank" %></p>
 <div id="jquery_jplayer_1" class="jp-jplayer">
 # <audio id="jp_audio_0" preload="metadata" src="http://127.0.0.1:3000/audios/sarabande.ogg"></audio>
 </div>
@@ -74,7 +75,7 @@
 </div>
 <% Song.all.each do |song| %>
 <div class="words" id="<%= song.name %>">
-	<%= render(partial: "words", locals: {id: song.id}) %>
+	<%= render(partial: "words", locals: {song: song}) %>
 </div>
 <% end %>
 
