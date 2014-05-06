@@ -6,17 +6,17 @@ class SongsController < ApplicationController
 	end
 	def show
 		do_and_respond(:show, :index) do
-  		@song = Song.find(params[:id].to_i)
+      @song = Song.find(params[:id].to_i)
+      if pdf_request?
+        @send_file = true
+        @filename = @song.filename
+        @file_path = "#{Rails.root}/public/partitions/#{@filename}"
+        send_file @file_path, filename: @filename, type: "application/pdf"
+      else
+  		  @song = Song.find(params[:id].to_i)
+      end
   	end
 	end
 
 protected
-
-	def do_and_respond(on_success = :index, on_rescue = nil, &block)
-    yield if block_given?
-    render on_success
-  # rescue
-    # render on_rescue if on_rescue
-    # redirect_to welcomes_path 
-  end
 end

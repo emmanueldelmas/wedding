@@ -10,6 +10,14 @@ protected
 
   def do_and_respond(on_success = :index, on_rescue = nil, &block)
     yield if block_given?
+    if csv_request?
+    elsif pdf_request?
+      if @send_file
+        return send_file @file_path, filename: @filename, type: "application/pdf", disposition: "inline"
+      elsif @pdf
+        return send_data @pdf.render, :filename => @filename, :type => "application/pdf", disposition: "inline"
+      end
+    end
     render on_success
   # rescue
     # render on_rescue if on_rescue
@@ -24,8 +32,19 @@ private
   end
   
   def authenticated
-    puts ["user and cookies", @authenticated, session[:authenticated]]
-    puts ["user and cookies", @authenticated, session[:authenticated]]
     session[:authenticated] = @authenticated if @authenticated
     @authenticated ||= session[:authenticated]
+  end
+
+  def html_request?;    !csv_request? && !pdf_request?;  end
+
+  def csv_request?
+    @current_uri = request.original_fullpath.split( '?').first
+    @current_uri =~ /\.csv\Z/
+  end
+  
+  def pdf_request?
+    @current_uri = request.original_fullpath.split( '?').first
+    @current_uri =~ /\.pdf\Z/
+  end
 end
