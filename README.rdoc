@@ -54,8 +54,10 @@ Dès qu'un utilisateur saisi ses nom et prénom, ceux-ci son sauvegarder dans un
 Dès que l'utilisateur saisi le mot de passe, un cookie signalant l'authentification est sauvegardé.
 Dès qu'un utilisateur saisi le super mot de passe, un cookie signalant un admin est sauvegardé.
 
-Un formulaire permet à l'utilisateur de saisir son nom et son adresse ainsi que le nom de son conjoint. + message_adresse
-Un autre formulaire permet à l'utilisateur de saisir son nom et sa présence, ainsi que celle de son conjoint. + message_reponse
+Un formulaire permet à l'utilisateur de saisir son nom et son adresse ainsi que le nom de son conjoint.
+Un retour au formulaire d'adresse n'affichera pas les informations précédemment saisie, afin de garder priver les données du formulaire.
+Un autre formulaire permet à l'utilisateur de saisir son nom et sa présence, ainsi que celle de son conjoint.
+Un retour au formulaire de réponse affiche les informations précédemment saisie.
 Pouvoir visualiser et exporter les utilisateurs.
 
 

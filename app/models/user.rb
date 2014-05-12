@@ -41,10 +41,16 @@ end
 
 class User < ActiveRecord::Base
 	before_validation :cypher_password, if: :password
-	before_save :set_response
+	before_validation :set_login
+	before_save :set_response, :save_partner
+
+	validates_uniqueness_of :login
+	validates_presence_of :login
 
 	def password=(password); @password = password; end
 	def password; @password; end
+
+	def name; "#{self[:firstname]} #{self[:lastname]}"; end
 
 	def wedding=(value); response[:wedding] = value; end
 	def cocktail=(value); response[:cocktail] = value; end
@@ -54,19 +60,33 @@ class User < ActiveRecord::Base
 	def cocktail; response[:cocktail]; end
 	def dinner; response[:dinner]; end
 	def party; response[:party]; end
-	def set_response; puts "before_save"; self.presence = self.response.to_yaml; end
+	def set_response; self.presence = self.response.to_yaml; end
 	def response; @response ||= (self.presence ? YAML.load(presence) : {}); end
 
-	def self.create_default_user(password)
-		create!(firstname: "default", lastname: "user", login: "mariage", password: password)
+	def partner; @partner ||= User.find_by(id: partner_id) || self.persisted? && User.find_by(partner_id: self[:id]) || User.new; end
+	def partner=(partner); @partner = partner; end
+	def save_partner
+		if @partner.present?
+			partner = self.class.where(login: self.class.login(@partner)).first_or_create!
+			partner.update_attributes(@partner)
+			self[:partner_id] = partner[:id]
+		end
+		true
 	end
-  def self.default_user
-    find_by!(firstname: "default", lastname: "user", login: "mariage")
-  end
-  
-  def self.name_without_accent(hash)
-    {firstname: hash[:firstname].without_accent, lastname: hash[:lastname].without_accent}
-  end
+
+	def set_login;	self[:login] ||= User.login(self);	end
+	def self.login(user_hash); "#{user_hash[:firstname]}#{user_hash[:lastname]}".without_accent.gsub(/\s+/, "");		end
+
+	def self.create_default_user(password)
+		create!(firstname: "default", lastname: "user", login: "default user", password: password)
+	end
+	def self.default_user
+    	find_by!(firstname: "default", lastname: "user", login: "default user")
+	end
+	  
+	def self.name_without_accent(hash)
+		{firstname: hash[:firstname], lastname: hash[:lastname].without_accent}
+	end
 
 	def cypher_password
 		self[:salt] ||= BCrypt::Engine.generate_salt

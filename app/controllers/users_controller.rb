@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    puts ["new", params, @current_user]
+    puts ["new", params, @current_user.try(:name)]
     return edit if @current_user
     do_and_respond(:new) do
       @current_user = User.new
@@ -23,23 +23,21 @@ class UsersController < ApplicationController
   end
   
   def edit
-    puts ["edit", params, @current_user]
+    puts ["edit", params, @current_user.try(:name)]
     do_and_respond(:edit, :show) do
       @object = params[:object]
     end
   end
   
   def create
-    puts ["create", params, @current_user]
-    do_and_respond(:show) do
-      puts params[:user]
-      @current_user = User.where(User.name_without_accent(user_params)).first_or_create!(user_params)
-    end
+    puts ["create", params, @current_user.try(:name)]
+    update
   end
   
   def update
-    puts ["update", params, @current_user]
+    puts ["update", params, @current_user.try(:name)]
     do_and_respond(:show) do
+      @current_user = User.where(login: User.login(user_params)).first_or_create!
       @current_user.update_attributes!(user_params)
     end
   end
@@ -53,6 +51,6 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit!
+    params.require(:user).except!(:login, :password, :encrypted_password).permit!
   end
 end

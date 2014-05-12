@@ -15,6 +15,21 @@
 		<div id="party"><%= f.label "Soirée" %><br /><%= f.check_box :party %></div>
 	</div>
 	<br />
+	<div class="user_name">
+	<%= fields_for :partner do |p| %>
+		<div class="user_name">
+			<div id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname %></div>
+			<div id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname %></div>
+			<div id="email"><%= p.label "Courriel" %><br /><%= p.email_field :email %></div>
+		</div>
+		<br />
+		<div class="user_response">
+			<div id="wedding"><%= p.label "Mariage" %><br /><%= p.check_box :wedding %></div>
+			<div id="cocktail"><%= p.label "Cocktail" %><br /><%= p.check_box :cocktail %></div>
+			<div id="dinner"><%= p.label "Dîner" %><br /><%= p.check_box :dinner %></div>
+			<div id="party"><%= p.label "Soirée" %><br /><%= p.check_box :party %></div>
+		</div>
+	<% end %>
 	<div class="user_message">
 		<div id="message_response"><%= f.label "Message" %><br /><%= f.text_area :message_response %></div>
 	</div>

@@ -13,7 +13,7 @@ class Song
 
   SONGS = [
     nil,# Song.new(0, "sarabande", "Sarabande, marche Nuptial", "Procession", "Heandel"),
-    nil,# Song.new(1, "jubilez", "Jubilez", "Louange d'entrée", "Frère Jean-Baptiste"),
+    Song.new(1, "jubilez", "Jubilez", "Louange d'entrée", "Frère Jean-Baptiste"),
     Song.new(2, "kyrie", "Messe de l'Emmanuel - Kyrie", "Kyrie", "Communauté de l'Emmanuel"),
     Song.new(3, "gloria", "Messe de l'Emmanuel - Gloria", "Gloria", "Communauté de l'Emmanuel"),
     Song.new(4, "psaume", "Le Seigneur est ma Lumière et mon Salut", "Psaume", ""),
