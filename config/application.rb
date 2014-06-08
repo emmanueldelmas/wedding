@@ -23,6 +23,9 @@ module Wedding
 		
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+
+    # Asset
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     
     # Generators config
     config.generators do |g|
