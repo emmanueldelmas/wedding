@@ -18,16 +18,16 @@
 	<div class="user_name">
 	<%= f.fields_for :partner do |p| %>
 		<div class="user_name">
-			<div id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname %></div>
-			<div id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname %></div>
-			<div id="email"><%= p.label "Courriel" %><br /><%= p.email_field :email %></div>
+			<div id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname, value: @current_user.partner.firstname %></div>
+			<div id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname, value: @current_user.partner.lastname %></div>
+			<div id="email"><%= p.label "Courriel" %><br /><%= p.email_field :email, value: @current_user.partner.email %></div>
 		</div>
 		<br />
 		<div class="user_response">
-			<div id="wedding"><%= p.label "Mariage" %><br /><%= p.check_box :wedding %></div>
-			<div id="cocktail"><%= p.label "Cocktail" %><br /><%= p.check_box :cocktail %></div>
-			<div id="dinner"><%= p.label "Dîner" %><br /><%= p.check_box :dinner %></div>
-			<div id="party"><%= p.label "Soirée" %><br /><%= p.check_box :party %></div>
+			<div id="wedding"><%= p.label "Mariage" %><br /><%= p.check_box :wedding, value: @current_user.partner.wedding %></div>
+			<div id="cocktail"><%= p.label "Cocktail" %><br /><%= p.check_box :cocktail, value: @current_user.partner.cocktail %></div>
+			<div id="dinner"><%= p.label "Dîner" %><br /><%= p.check_box :dinner, value: @current_user.partner.dinner %></div>
+			<div id="party"><%= p.label "Soirée" %><br /><%= p.check_box :party, value: @current_user.partner.party %></div>
 		</div>
 	<% end %>
 	<div class="user_message">
