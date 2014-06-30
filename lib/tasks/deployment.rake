@@ -1,36 +1,29 @@
 # coding: utf-8
 
 namespace :application do
-  desc "install the nabarreria application"
+  desc "Install the application"
   
   APPLICATION_FILES = [
     ".ruby-version", ".ruby-gemset", "app", "config", "config.ru", "db", "Gemfile", "Gemfile.lock",
     "lib", "log", "public", "Rakefile", "spec", "tmp", "vendor/assets"
   ]
   
-  task :install do    
+  task :install do
+    puts "run bundle install --deployment"
+    Bundler.with_clean_env do
+      sh "bundle install --deployment"
+    end
+
     # copie les fichiers de configuration
     mkdir_p("#{Rails.root}/tmp")
     
-    puts <<-TEXT
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-    D'ABORD FAIRE sudo admin/app/conf_server.rb mice
-
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-Nous allons changer la configurations des fichers suivants:
-   - initializers\n\n\n\n
-La locale 'fr_FR' doit etre disponible dans config/environments/variables.rb
-    TEXT
     sleep 4
 
     # thin files permissions
     Rake::Task['application:set_appli_acl'].invoke
     
     sleep 4
+    puts "run db:migrate"
     Rake::Task['db:migrate'].invoke
 
     # thin files permissions
@@ -39,10 +32,16 @@ La locale 'fr_FR' doit etre disponible dans config/environments/variables.rb
   
   desc "Get the last version of the application"
   task :update => :environment do
+    puts "run bundle install --deployment"
+    Bundler.with_clean_env do
+      sh "bundle install --deployment"
+    end
+
+    puts "run db:migrate"
+    Rake::Task['db:migrate'].invoke
+
     abcs = ActiveRecord::Base.configurations
     ActiveRecord::Base.establish_connection( abcs[Rails.env])
-    
-    FileUtils.rm_rf( "#{Rails.root}/publica/ass")
 
     #### precompile assets
     Rake::Task['assets:precompile'].invoke    
@@ -51,8 +50,8 @@ La locale 'fr_FR' doit etre disponible dans config/environments/variables.rb
     Rake::Task['application:set_appli_acl'].invoke
     
     # # restart application
-    # application_name = File.basename( File.expand_path( Rails.root))
-    # system "thiny restart #{application_name}"
+    application_name = File.basename( File.expand_path( Rails.root))
+    system "thiny restart #{application_name}"
   end
   
   desc "Change thin files ACL, must be root (sudo)"
