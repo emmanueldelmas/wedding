@@ -16,7 +16,7 @@
 	</div>
 	<br />
 	<div class="user_name">
-	<%= fields_for :partner do |p| %>
+	<%= f.fields_for :partner do |p| %>
 		<div class="user_name">
 			<div id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname %></div>
 			<div id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname %></div>
