@@ -20,7 +20,7 @@ class Song
     Song.new(5, "alleluia", "Messe de l'Emmanuel - Alleluia", "Alleluia", "Communauté de l'Emmanuel"),
     Song.new(5, "litanie", "Litanie des saints Congolaise", "Litanie des saints", "Communauté du Chemin Neuf"),
     nil,# Song.new(6, "", "", "Action de grâce", ""),
-    nil,# Song.new(7, "", "", "Invocation à l'Esprit", ""),
+    nil,# Song.new(7, "Veni Sancte Spiritus Anuncio", "", "Invocation à l'Esprit", "https://www.youtube.com/watch?v=IPr80wHukYc"),
     Song.new(8, "mendiez", "Mendiez l'humilité", "Prière universelle", ""),
     Song.new(9, "ne_crains_pas", "Ne crains pas, Je suis ton Dieu", "Offertoire", "Frère Jean-Baptiste"),
     Song.new(10, "sanctus", "Messe de l'Emmanuel - Sanctus", "Sanctus", "Communauté de l'Emmanuel"),
