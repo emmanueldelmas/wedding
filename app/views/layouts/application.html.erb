@@ -9,23 +9,23 @@
 </head>
 <body class="main_grey">
   <%= yield :script %>
-  <div id="head_band" class="main_blue">
-    <ul>
-      <li class="main_link second_blue">
-        <%= link_to "Accueil", welcomes_path %>
-      </li>
-      <li class="main_link second_blue">
-        <%= link_to "Chants", songs_path %>
-      </li>
-      <li class="main_link second_blue">
-        <%= link_to "Adresse", new_user_path(:address) %>
-      </li>
-      <li class="main_link second_blue">
-        <%= link_to "Réponse", new_user_path(:response) %>
-      </li>
-    </ul>
+  <div class="container">
+    <div id="head_band" class="main_blue row">
+        <div class="main_link second_blue col-lg-9">
+          <%= link_to "Accueil", welcomes_path %>
+        </div>
+        <div class="main_link second_blue col-lg-1">
+          <%= link_to "Chants", songs_path %>
+        </div>
+        <div class="main_link second_blue col-lg-1">
+          <%= link_to "Adresse", new_user_path(:address) %>
+        </div>
+        <div class="main_link second_blue col-lg-1">
+          <%= link_to "Réponse", new_user_path(:response) %>
+        </div>
+    </div>
   </div>
-  <div>
+  <div class="container">
     <%= yield %>
   </div>
 </body>

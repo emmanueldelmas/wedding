@@ -9,11 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require main.css
- *= require normalize.css
- *= require jplayer.blue.monday.css.erb
  *= require_tree .
  */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "jplayer.blue.monday.css.scss";
 
 div#head_band {
   height:50px;
