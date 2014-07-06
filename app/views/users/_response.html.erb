@@ -1,84 +1,78 @@
-<h1>YES we come !</h1>
+<h1 class="text-center">YES we come !</h1>
 <br />
-<h3>Vous</h3>
 
-<%= form_for @current_user do |f| %>
-	<div class="user_name row">
-		<div class="col-lg-2" id="firstname"><%= f.label "Prénom" %><br /><%= f.text_field :firstname %></div>
-		<div class="col-lg-2" id="lastname"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname %></div>
-		<div class="col-lg-2" id="email"><%= f.label "Courriel" %><br /><%= f.email_field :email %></div>
-	</div>
-	<br />
-	<div class="user_response row">
-		<div class="col-lg-2" id="wedding">
-			<div class="row">
-				<div class="col-lg-1"><%= f.check_box :wedding %></div>
-				<div class="col-lg-10"><%= f.label "Mariage" %></div>
-			</div>
-		</div>
-		<div class="col-lg-2" id="cocktail">
-			<div class="row">
-				<div class="col-lg-1"><%= f.check_box :cocktail %></div>
-				<div class="col-lg-10"><%= f.label "Cocktail" %></div>
-			</div>
-		</div>
-		<div class="col-lg-2" id="dinner">
-			<div class="row">
-				<div class="col-lg-1"><%= f.check_box :dinner %></div>
-				<div class="col-lg-10"><%= f.label "Dîner" %></div>
-			</div>
-		</div>
-		<div class="col-lg-2" id="party">
-			<div class="row">
-				<div class="col-lg-1"><%= f.check_box :party %></div>
-				<div class="col-lg-10"><%= f.label "Soirée" %></div>
-			</div>
-		</div>
-	</div>
-	<br />
-	<div class="partner">
-	<h3>Votre partenaire</h3>
-	<%= f.fields_for :partner do |p| %>
-		<div class="user_name row">
-			<div class="col-lg-2" id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname, value: @current_user.partner.firstname %></div>
-			<div class="col-lg-2" id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname, value: @current_user.partner.lastname %></div>
-			<div class="col-lg-2" id="email"><%= p.label "Courriel" %><br /><%= p.email_field :email, value: @current_user.partner.email %></div>
+<%= form_for @current_user, role: "form" do |f| %>
+	<div class="you col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<h3>Vous</h3>
+		<div class="user_name">
+			<div class="form-group" id="firstname"><%= f.label "Prénom", for: "user_firstname" %><br /><%= f.text_field :firstname, class: "form-control" %></div>
+			<div class="form-group" id="lastname"><%= f.label "Nom", for: "user_lastname" %><br /><%= f.text_field :lastname, class: "form-control" %></div>
+			<div class="form-group" id="email"><%= f.label "Courriel", for: "user_email" %><br /><%= f.email_field :email, class: "form-control" %></div>
 		</div>
 		<br />
 		<div class="user_response row">
-			<div class="col-lg-2" id="wedding">
-				<div class="row">
-					<div class="col-lg-1"><%= p.check_box :wedding, value: @current_user.partner.wedding %></div>
-					<div class="col-lg-10"><%= p.label "Mariage" %></div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="row" id="wedding">
+						<div class="col-md-10 col-lg-10"><%= f.label "Mariage", class: "pull-left" %></div>
+						<div class="col-md-2 col-lg-2"><%= f.check_box :wedding, class: "pull-right" %></div>
+				</div>
+				<div class="row" id="cocktail">
+						<div class="col-md-10 col-lg-10"><%= f.label "Cocktail", class: "pull-left" %></div>
+						<div class="col-md-2 col-lg-2"><%= f.check_box :cocktail, class: "pull-right" %></div>
 				</div>
 			</div>
-			<div class="col-lg-2" id="cocktail">
-				<div class="row">
-					<div class="col-lg-1"><%= p.check_box :cocktail, value: @current_user.partner.cocktail %></div>
-					<div class="col-lg-10"><%= p.label "Cocktail" %></div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+				<div class="row" id="dinner">
+						<div class="col-md-2 col-lg-2"><%= f.check_box :dinner, class: "pull-left" %></div>
+						<div class="col-md-10 col-lg-10"><%= f.label "Dîner", class: "pull-right" %></div>
 				</div>
-			</div>
-			<div class="col-lg-2" id="dinner">
-				<div class="row">
-					<div class="col-lg-1"><%= p.check_box :dinner, value: @current_user.partner.dinner %></div>
-					<div class="col-lg-10"><%= p.label "Dîner" %></div>
-				</div>
-			</div>
-			<div class="col-lg-2" id="party">
-				<div class="row">
-					<div class="col-lg-1"><%= p.check_box :party, value: @current_user.partner.party %></div>
-					<div class="col-lg-10"><%= p.label "Soirée" %></div>
+				<div class="row" id="party">
+						<div class="col-md-2 col-lg-2"><%= f.check_box :party, class: "pull-left" %></div>
+						<div class="col-md-10 col-lg-10"><%= f.label "Soirée", class: "pull-right" %></div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="partner col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	<h3>Votre partenaire particulier</h3>
+	<%= f.fields_for :partner do |p| %>
+		<div class="user_name">
+			<div class="form-group" id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname, value: @current_user.partner.firstname, class: "form-control" %></div>
+			<div class="form-group" id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname, value: @current_user.partner.lastname, class: "form-control" %></div>
+			<div class="form-group" id="email"><%= p.label "Courriel" %><br /><%= p.email_field :email, value: @current_user.partner.email, class: "form-control" %></div>
+		</div>
+		<br />
+		<div class="user_response row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="row" id="wedding">
+					<div class="col-md-10 col-lg-10"><%= p.label "Mariage", class: "pull-left" %></div>
+					<div class="col-md-2 col-lg-2"><%= p.check_box :wedding, value: @current_user.partner.wedding, class: "pull-right" %></div>
+				</div>
+				<div class="row" id="cocktail">
+					<div class="col-md-10 col-lg-10"><%= p.label "Cocktail", class: "pull-left" %></div>
+					<div class="col-md-2 col-lg-2"><%= p.check_box :cocktail, value: @current_user.partner.cocktail, class: "pull-right" %></div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<div class="row" id="dinner">
+					<div class="col-md-2 col-lg-2"><%= p.check_box :dinner, value: @current_user.partner.dinner, class: "pull-left" %></div>
+					<div class="col-md-10 col-lg-10"><%= p.label "Dîner", class: "pull-right" %></div>
+				</div>
+				<div class="row" id="party">
+					<div class="col-md-2 col-lg-2"><%= p.check_box :party, value: @current_user.partner.party, class: "pull-left" %></div>
+					<div class="col-md-10 col-lg-10"><%= p.label "Soirée", class: "pull-right" %></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<% end %>
 	<br />
-	<h3>Un petit mot ?</h3>
-	<div class="user_message row">
-		<div class="col-lg-12" id="message_response"><%= f.text_area :message_response %></div>
+	<div class="user_message col-lg-12">
+		<h3>Un petit mot ?</h3>
+		<div class="" id="message_response"><%= f.text_area :message_response, class: "form-control", rows: "3" %></div>
 	</div>
 	<br />
-	<div class="row">
-		<div class="submit_form col-lg-12" id="submit_address"><%= f.submit "Soumettre" %></div>
+	<div class="col-lg-12">
+		<div class="submit_form" id="submit_address"><%= f.submit "Soumettre", class: "btn btn-primary" %></div>
 	</div>
 <% end %>

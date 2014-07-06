@@ -17,7 +17,7 @@
 		});
 		$("div.words").hide();
 		$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(){
-			$name = $("#jp_audio_0").attr('src').split(/\//).pop().split(/\./).shift();
+			$name = $("audio").attr('src').split(/\//).pop().split(/\./).shift();
 			$("div.words").hide();
 			$("div.words#"+$name).show();
 		});
@@ -30,7 +30,7 @@
 <p><%= link_to "Télécharger toutes les partitions", songs_path("zip"), target: "_blank" %></p>
 
 <div class="row">
-	<div class="col-lg-5 col-md-6">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
 		<div id="jquery_jplayer_1" class="jp-jplayer">
 		# <audio id="jp_audio_0" preload="metadata" src="http://127.0.0.1:3000/audios/sarabande.ogg"></audio>
 		</div>
@@ -76,7 +76,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-7 col-md-6">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
 		<% Song.all.each do |song| %>
 		<div class="words" id="<%= song.name %>">
 			<%= render(partial: "words", locals: {song: song}) %>
