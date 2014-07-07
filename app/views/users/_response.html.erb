@@ -7,7 +7,12 @@
 		<div class="user_name">
 			<div class="form-group" id="firstname"><%= f.label "Prénom", for: "user_firstname" %><br /><%= f.text_field :firstname, class: "form-control" %></div>
 			<div class="form-group" id="lastname"><%= f.label "Nom", for: "user_lastname" %><br /><%= f.text_field :lastname, class: "form-control" %></div>
-			<div class="form-group" id="email"><%= f.label "Courriel", for: "user_email" %><br /><%= f.email_field :email, class: "form-control" %></div>
+			<div class="form-group" id="email">
+				<%= f.label "Courriel", for: "user_email" %><br />
+				<div class="input-group">
+  					<span class="input-group-addon">@</span><%= f.email_field :email, class: "form-control" %>
+  				</div>
+  			</div>
 		</div>
 		<br />
 		<div class="user_response row">
@@ -39,7 +44,12 @@
 		<div class="user_name">
 			<div class="form-group" id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname, value: @current_user.partner.firstname, class: "form-control" %></div>
 			<div class="form-group" id="lastname"><%= p.label "Nom_de_famille" %><br /><%= p.text_field :lastname, value: @current_user.partner.lastname, class: "form-control" %></div>
-			<div class="form-group" id="email"><%= p.label "Courriel" %><br /><%= p.email_field :email, value: @current_user.partner.email, class: "form-control" %></div>
+			<div class="form-group" id="email">
+				<%= p.label "Courriel" %><br />
+				<div class="input-group">
+					<span class="input-group-addon">@</span><%= p.email_field :email, value: @current_user.partner.email, class: "form-control" %>
+				</div>
+			</div>
 		</div>
 		<br />
 		<div class="user_response row">

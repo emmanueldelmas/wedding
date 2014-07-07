@@ -6,7 +6,11 @@
 		<div id="lastname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname, class: "form-control" %></div>
 	</div>
 	<div class="user_email_phone">
-		<div id="email" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Courriel" %><br /><%= f.text_field :email, class: "form-control" %></div>
+		<div id="email" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Courriel" %><br />
+			<div class="input-group">
+				<span class="input-group-addon">@</span><%= f.email_field :email, class: "form-control" %>
+			</div>
+		</div>
 		<div id="phone" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Téléphone" %><br /><%= f.telephone_field :phone, class: "form-control" %></div>
 	</div>
 	<div class="user_address">

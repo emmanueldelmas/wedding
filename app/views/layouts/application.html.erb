@@ -13,7 +13,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
       // set the date we're counting down to
-      var target_date = new Date('Oct, 25, 2014').getTime();
+      var target_date = new Date(2014,9,25,14,0,0).getTime();
       // variables for time units
       var days, hours, minutes, seconds;
       // get tag element
@@ -52,9 +52,13 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Chants", songs_path %></li>
           <li><%= link_to "Adresse", new_user_path(:address) %></li>
           <li><%= link_to "Réponse", new_user_path(:response) %></li>
+          <li><%= link_to "Cartes", welcomes_path %></li>
+          <li><%= link_to "Chants", songs_path %></li>
+          <li><%= link_to "Soirée", welcomes_path %></li>
+          <li><%= link_to "Cadeaux", welcomes_path %></li>
+          <li><%= link_to "Photos", welcomes_path %></li>
         </ul>
         <p class="navbar-text navbar-right" id="countdown"></p>
       </div>

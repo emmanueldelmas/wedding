@@ -4,8 +4,9 @@
 <h1 class="text-center">Bienvenue le 25 octobre 2014 !</h1>
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
   <h2>Me déplacer...</h2>
-  <iframe width="200" height="150" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d674999.7457108255!2d2.138384849999973!3d48.63438282702012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!1i1!3e0!4m5!1s0x47e67c493211b363%3A0x16fbc3959f67efa1!2s%C3%89glise+Saint-Symphorien%2C+2+Place+Saint-Symphorien%2C+78000+Versailles%2C+France!3m2!1d48.804141!2d2.1460019999999997!4m3!3m2!1d48.318706999999996!2d1.9905579999999998!5e0!3m2!1sfr!2sfr!4v1396021100978">
-  </iframe>
+  <iframe width="200" height="150" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en-US&amp;geocode=&amp;q=Paroisse+Saint+Symphorien,+Place+Saint-Symphorien,+Versailles&amp;aq=0&amp;oq=Versailles+st+sym&amp;sll=48.33925,2.064228&amp;sspn=0.08113,0.169086&amp;gl=FR&amp;ie=UTF8&amp;hq=Paroisse+Saint+Symphorien,+Place+Saint-Symphorien,+Versailles&amp;ll=48.804141,2.146002&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe>
+  <iframe width="200" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en-US&amp;geocode=&amp;q=48%C2%B019'04.5%22N+1%C2%B059'24.4%22E&amp;aq=&amp;sll=48.317922,1.990113&amp;sspn=0.010145,0.021136&amp;t=m&amp;gl=FR&amp;g=48%C2%B019'04.5%22N+1%C2%B059'24.4%22E&amp;ie=UTF8&amp;ll=48.317917,1.990111&amp;spn=1.289591,2.705383&amp;z=9&amp;output=embed">
+  </iframe><br />
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
   <h2><%= link_to("Participer à la chorale", songs_path) %></h2>
@@ -20,7 +21,7 @@
   <p>Lien vers la liste des mariés</p>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2>RSVP</h2>
+  <h2><%= link_to("RSVP", new_user_path("response")) %></h2>
   <p><%= link_to("YES we come !", new_user_path("response")) %></p>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
