@@ -9,10 +9,6 @@ namespace :application do
   ]
   
   task :install do
-    puts "run bundle install --deployment"
-    Bundler.with_clean_env do
-      sh "bundle install --deployment"
-    end
 
     # copie les fichiers de configuration
     mkdir_p("#{Rails.root}/tmp")
@@ -32,10 +28,6 @@ namespace :application do
   
   desc "Get the last version of the application"
   task :update => :environment do
-    puts "run bundle install --deployment"
-    Bundler.with_clean_env do
-      sh "bundle install --deployment"
-    end
 
     puts "run db:migrate"
     Rake::Task['db:migrate'].invoke
@@ -51,7 +43,6 @@ namespace :application do
     
     # # restart application
     application_name = File.basename( File.expand_path( Rails.root))
-    system "thiny restart #{application_name}"
   end
   
   desc "Change thin files ACL, must be root (sudo)"

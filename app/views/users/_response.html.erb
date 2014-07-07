@@ -3,7 +3,7 @@
 
 <%= form_for @current_user, role: "form" do |f| %>
 	<div class="you col-xs-12 col-sm-6 col-md-6 col-lg-6">
-		<h3>Vous</h3>
+		<h3>Partenaire particulier</h3>
 		<div class="user_name">
 			<div class="form-group" id="firstname"><%= f.label "Prénom", for: "user_firstname" %><br /><%= f.text_field :firstname, class: "form-control" %></div>
 			<div class="form-group" id="lastname"><%= f.label "Nom", for: "user_lastname" %><br /><%= f.text_field :lastname, class: "form-control" %></div>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div class="partner col-xs-12 col-sm-6 col-md-6 col-lg-6">
-	<h3>Votre partenaire particulier</h3>
+	<h3>Partenaire particulière</h3>
 	<%= f.fields_for :partner do |p| %>
 		<div class="user_name">
 			<div class="form-group" id="firstname"><%= p.label "Prénom" %><br /><%= p.text_field :firstname, value: @current_user.partner.firstname, class: "form-control" %></div>
