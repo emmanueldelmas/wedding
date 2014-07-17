@@ -39,6 +39,26 @@
       1000);
     });
   </script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApC8568UgUkwrt7DMfNpq0KtxKOwhiTbE&sensor=false&language=fr">
+  </script>
+  <script type="text/javascript">
+    function initialize() {
+      var mapOptions = {
+        center: new google.maps.LatLng(48.804277,2.146196),
+        zoom: 13
+      };
+      var map = new google.maps.Map(document.getElementById("map-eglise"), mapOptions);
+      var mapOptions = {
+        center: new google.maps.LatLng(48.317922,1.990113),
+        zoom: 10
+      };
+      var map = new google.maps.Map(document.getElementById("map-chateau"), mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+  <!--  -->
+
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -53,11 +73,11 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><%= link_to "Adresse", new_user_path(:address) %></li>
-          <li><%= link_to "Réponse", new_user_path(:response) %></li>
-          <li><%= link_to "Cartes", welcomes_path %></li>
           <li><%= link_to "Chants", songs_path %></li>
+          <li><%= link_to "Réponse", new_user_path(:response) %></li>
+          <li><%= link_to "Trajet", welcomes_path %></li>
           <li><%= link_to "Soirée", welcomes_path %></li>
-          <li><%= link_to "Cadeaux", welcomes_path %></li>
+          <li><%= link_to "Liste", welcomes_path %></li>
           <li><%= link_to "Photos", welcomes_path %></li>
         </ul>
         <p class="navbar-text navbar-right" id="countdown"></p>

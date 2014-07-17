@@ -1,29 +1,147 @@
 <% content_for :script do %>
 <% end %>
 
-<h1 class="text-center">Bienvenue le 25 octobre 2014 !</h1>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2>Me déplacer...</h2>
-  <iframe width="200" height="150" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en-US&amp;geocode=&amp;q=Paroisse+Saint+Symphorien,+Place+Saint-Symphorien,+Versailles&amp;aq=0&amp;oq=Versailles+st+sym&amp;sll=48.33925,2.064228&amp;sspn=0.08113,0.169086&amp;gl=FR&amp;ie=UTF8&amp;hq=Paroisse+Saint+Symphorien,+Place+Saint-Symphorien,+Versailles&amp;ll=48.804141,2.146002&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe>
-  <iframe width="200" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en-US&amp;geocode=&amp;q=48%C2%B019'04.5%22N+1%C2%B059'24.4%22E&amp;aq=&amp;sll=48.317922,1.990113&amp;sspn=0.010145,0.021136&amp;t=m&amp;gl=FR&amp;g=48%C2%B019'04.5%22N+1%C2%B059'24.4%22E&amp;ie=UTF8&amp;ll=48.317917,1.990111&amp;spn=1.289591,2.705383&amp;z=9&amp;output=embed">
-  </iframe><br />
+<h1 class="text-center">Rendez-vous le 25 octobre 2014 !</h1>
+
+
+<div class="row">
+  <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="item active">
+          <%= image_tag "mm0.jpg", class: "img-responsive" %>
+        </div>
+        <div class="item">
+          <%= image_tag "mm1.jpg", class: "img-responsive" %>
+        </div>
+        <div class="item">
+          <%= image_tag "mm2.jpg", class: "img-responsive" %>
+        </div>
+        <div class="item">
+          <%= image_tag "mm3.jpg", class: "img-responsive" %>
+        </div>
+        <div class="item">
+          <%= image_tag "mm4.jpg", class: "img-responsive" %>
+        </div>
+        <div class="item">
+          <%= image_tag "mm5.jpg", class: "img-responsive" %>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+  </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2><%= link_to("Participer à la chorale", songs_path) %></h2>
- 	<%= render(partial: "songs/song", locals: {song: @song}) %>
+
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+    <br />
+    <h2><%= link_to("Participer à la chorale", songs_path) %></h2>
+    <%= render(partial: "songs/song", locals: {song: @song}) %>
+  </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2>Faire la fête</h2>
-  <p>Ce soir avec Manu&Malou c'est... soirée disco ! </p>
+
+<!-- Carte pour se déplacer -->
+
+<!-- https://maps.google.com/maps?hl=en-US&ll=48.804885,2.147141&spn=0.037536,0.084457&t=m&gl=US&mapclient=embed&cid=1656132335380721569&z=14&iwloc=A -->
+
+<!-- https://maps.google.com/maps?q=48%C2%B019'04.5%22N+1%C2%B059'24.4%22E%4048.3179167,1.9901111&hl=en-US&ie=UTF8&ll=48.175244,1.991272&spn=1.216169,2.702637&t=m&gl=US&mapclient=embed&z=9 -->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <br />
+    <h2>Passer mon badge topographie</h2>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3>Où est l'église ?</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="embed-responsive embed-responsive-4by3">
+          <%= image_tag "eglise.jpg", class: "embed-responsive-item img-rounded" %>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="embed-responsive embed-responsive-4by3">
+          <div id="map-eglise" class="embed-responsive-item img-rounded">Map</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3>Où est le château ?</h3>
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="embed-responsive embed-responsive-4by3">
+          <%= image_tag "chateau.jpg", class: "embed-responsive-item img-rounded" %>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="embed-responsive embed-responsive-4by3">
+          <div id="map-chateau" class="embed-responsive-item img-rounded">Map</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2>Faire un cadeau</h2>
-  <p>Lien vers la liste des mariés</p>
+
+<!-- Partie pour la soirée -->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+    <br />
+    <h2>Danser jusqu'au bout de la nuit !</h2>
+    <p>Ce soir avec Manu & Malou c'est... soirée disco ! </p>
+  </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2><%= link_to("RSVP", new_user_path("response")) %></h2>
-  <p><%= link_to("YES we come !", new_user_path("response")) %></p>
+
+<!-- Partie liste mariage -->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+    <br />
+    <h2>Offrir un cadeau</h2>
+    <p>Lien vers la liste des mariés</p>
+  </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-  <h2>Partager des photos</h2>
+
+<!-- Partie réponse -->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+    <br />
+    <h2><%= link_to("Répondre avant le 30 septembre", new_user_path("response")) %></h2>
+    <%= link_to("YES we come !", new_user_path("response")) %>
+  </div>
+</div>
+
+<!-- Partie photos -->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+    <br />
+    <h2>Partager des photos</h2>
+  </div>
 </div>
