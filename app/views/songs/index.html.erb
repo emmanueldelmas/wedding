@@ -29,7 +29,7 @@
 <p>Je répète pour la chorale, je <%= link_to "télécharge toutes les partitions", songs_path("zip"), target: "_blank" %></p>
 
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+	<div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
 		<div id="jquery_jplayer_1" class="jp-jplayer">
 		# <audio id="jp_audio_0" preload="metadata" src="http://127.0.0.1:3000/audios/sarabande.ogg"></audio>
 		</div>
@@ -75,7 +75,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+	<div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
 		<% Song.all.each do |song| %>
 		<div class="words" id="<%= song.name %>">
 			<%= render(partial: "words", locals: {song: song}) %>
