@@ -19,9 +19,10 @@
 
 @font-face {
 	font-family: 'brock_script';
-	src: url("brock_script/brock_script.eot") format('eot'), /* IE9 Compat Modes */
-	     url("brock_script/brock_script.woff") format('woff'), /* Modern Browsers */
-	     url("brock_script/brock_script.svg") format('svg'); /* Legacy iOS */
+	src: font-url( "brock_script/brock_script.eot") format('eot'); /* IE9 Compat Modes */
+	src: font-url( "brock_script/brock_script.eot?#iefix") format('embedded-opentype'), /* IE9 Compat Modes */
+	     font-url( "brock_script/brock_script.woff") format('woff'), /* Modern Browsers */
+	     font-url( "brock_script/brock_script.svg") format('svg'); /* Legacy iOS */
 }
 
 h1, h2, h3, h4 { font-family: 'brock_script', Arial, sans-serif; }
@@ -32,6 +33,9 @@ h1, h2, h3, h4 { font-family: 'brock_script', Arial, sans-serif; }
 .main_grey { background-color:#C4C4C4; }
 .second_grey { background-color:#919191; }
 
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
 
 .image_cards {
 	float: center;
