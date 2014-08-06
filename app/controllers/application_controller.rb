@@ -22,10 +22,10 @@ protected
         return send_data @pdf.render, :filename => @filename, :type => "application/pdf", disposition: "inline"
       end
     end
-    render on_success
-  # rescue
-    # render on_rescue if on_rescue
-    # redirect_to welcomes_path 
+    on_success =~ /redirect_to_/ ? redirect_to( send( on_success.gsub(/redirect_to_/, ""))) : render( on_success)
+  rescue
+    on_rescue =~ /redirect_to_/ ? redirect_to( send( on_rescue.gsub(/redirect_to_/, ""))) : render( on_rescue) if on_rescue
+    redirect_to welcomes_path
   end
   
 private

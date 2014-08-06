@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   
   def update
     puts ["update", params, @current_user.try(:name)]
-    do_and_respond(:show) do
+    do_and_respond(:redirect_to_welcomes_path) do
       @current_user = User.where(login: User.login(user_params)).first_or_create!
       @current_user.update_attributes!(user_params)
     end
