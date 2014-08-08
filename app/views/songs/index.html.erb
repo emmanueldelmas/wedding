@@ -6,7 +6,7 @@
 			cssSelectorAncestor: "#jp_container_1"
 		}, [
 			{
-				<%= Song.all.collect{|song| %Q{title:\"#{song.title}\", mp3:\"#{audio_path(song.name+".mp3")}\", oga:\"#{audio_path(song.name+".ogg")}\	"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
+				<%= Song.all.collect{|song| %Q{title:\"#{song.title} - #{song.type}\", mp3:\"#{audio_path(song.name+".mp3")}\", oga:\"#{audio_path(song.name+".ogg")}\"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
 			}
 		], {
 			swfPath: "../js",
