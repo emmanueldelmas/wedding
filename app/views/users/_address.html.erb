@@ -1,6 +1,7 @@
+<h1 class="text-center">1 adresse = 1 faire part<small>... ou plus si affinité !</small></h1>
+<br />
+<div class="row main_grey">
 <%= form_for @current_user do |f| %>
-	<h1 class="text-center">1 adresse = 1 faire part<small>... ou plus si affinité !</small></h1>
-	<br />
 	<div class="user_name">
 		<div id="firstname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Prénom" %><br /><%= f.text_field :firstname, placeholder: "Emmanuel et Marie-Liesse", class: "form-control" %></div>
 		<div id="lastname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname, placeholder: "Delmas", class: "form-control" %></div>
@@ -29,3 +30,4 @@
 		<div class="submit_form" id="submit_address"><%= f.submit "Soumettre", class: "btn btn-primary" %></div>
 	</div>
 <% end %>
+</div>

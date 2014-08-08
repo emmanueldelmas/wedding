@@ -4,8 +4,8 @@
 <h1 class="text-center">Rendez-vous le 25 octobre 2014 !</h1>
 
 
-<div class="row">
-  <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+<div class="row main_grey">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -48,11 +48,13 @@
 </div>
 
 
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+<h2 class="text-center">Participer à the voice !</h2>
+<div class="row main_grey text-center">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
     <br />
-    <h2><%= link_to("Participer à la chorale", songs_path) %></h2>
+    <%= link_to("Toute la messe en avant première", songs_path) %>
     <%= render(partial: "songs/song", locals: {song: @song}) %>
+    <br />
   </div>
 </div>
 
@@ -62,10 +64,9 @@
 
 <!-- https://maps.google.com/maps?q=48%C2%B019'04.5%22N+1%C2%B059'24.4%22E%4048.3179167,1.9901111&hl=en-US&ie=UTF8&ll=48.175244,1.991272&spn=1.216169,2.702637&t=m&gl=US&mapclient=embed&z=9 -->
 
-<div class="row">
+<h2 class="text-center">Passer mon badge topographie !</h2>
+<div class="row main_grey text-center">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <br />
-    <h2>Passer mon badge topographie</h2>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div class="row">
@@ -109,39 +110,47 @@
 
 <!-- Partie pour la soirée -->
 
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+<h2 class="text-center">Prendre un cours de rock !</h2>
+<div class="row main_grey text-center">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
     <br />
-    <h2>Danser jusqu'au bout de la nuit !</h2>
-    <p>Ce soir avec Manu & Malou c'est... soirée disco ! </p>
+    <p class="">
+      Ce soir avec Manu & Malou c'est... soirée disco !<br />
+      Préparez votre veste à paillette, enfilez votre pantalon patte d'éph briant argenté et révisez vos classiques de Abba, Boney M...
+    </p>
   </div>
 </div>
 
 <!-- Partie liste mariage -->
 
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+<h2 class="text-center">Offrir un cadeau à la plus belle des mariées !</h2>
+<div class="row main_grey text-center">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <br />
-    <h2>Offrir un cadeau</h2>
-    <p>Lien vers la liste des mariés</p>
+    <%= link_to "Lien vers la liste des mariés", "http://www.millemercismariage.com/maloumanu/liste.html", target: "_blank" %>
   </div>
 </div>
 
 <!-- Partie réponse -->
-
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+<h2 class="text-center">Répondre avant le 30 septembre.</h2>
+<div class="row main_grey text-center">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <br />
-    <h2><%= link_to("Répondre avant le 30 septembre", new_user_path("response")) %></h2>
     <%= link_to("YES we come !", new_user_path("response")) %>
   </div>
 </div>
 
 <!-- Partie photos -->
 
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+<h2 class="text-center">Partager des photos.</h2>
+<div class="row main_grey text-center">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <br />
-    <h2>Partager des photos</h2>
+    <p>
+      Bientôt sur le web !
+    </p>
+    <p>
+      Vous pourrez déposer ou récupérer ici les photos du mariages.
+    </p>
   </div>
 </div>

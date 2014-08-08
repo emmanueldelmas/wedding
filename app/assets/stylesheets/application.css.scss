@@ -26,11 +26,12 @@
 }
 
 h1, h2, h3, h4 { font-family: 'brock_script', Arial, sans-serif; }
-
+h1, h2 { background-color:#FEFEFE; }
 .main_blue { background-color:#1208DA; }
 .second_blue { background-color:#4039D2; }
 
-.main_grey { background-color:#C4C4C4; }
+.blank { background-color:#FEFEFE; }
+.main_grey { background-color:#F0F0F0; }
 .second_grey { background-color:#919191; }
 
 .carousel-inner > .item > img {

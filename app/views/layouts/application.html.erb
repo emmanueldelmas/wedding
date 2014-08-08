@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
-<body class="main_grey">
+<body class="">
   <%= yield :script %>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -77,7 +77,7 @@
           <li><%= link_to "Réponse", new_user_path(:response) %></li>
           <li><%= link_to "Trajet", welcomes_path %></li>
           <li><%= link_to "Soirée", welcomes_path %></li>
-          <li><%= link_to "Liste", welcomes_path %></li>
+          <li><%= link_to "Liste", "http://www.millemercismariage.com/maloumanu/liste.html", target: "_blank" %></li>
           <li><%= link_to "Photos", welcomes_path %></li>
         </ul>
         <p class="navbar-text navbar-right" id="countdown"></p>
