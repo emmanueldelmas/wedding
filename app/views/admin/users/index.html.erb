@@ -1,4 +1,4 @@
-<h2 class="text-center">Liste des invités</h2>
+<h2 class="text-center">Administration des invités</h2>
 <div class="row main_grey">
   <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
     <table class="table table-condensed">
@@ -6,13 +6,21 @@
         <tr>
           <th>Nom</th>
           <th>Prénom</th>
+          <th>Rue</th>
+          <th>Complément</th>
+          <th>Code postal</th>
+          <th>Ville</th>
         </tr>
       </thead>
       <tbody>
-        <% User.where("town IS NOT NULL OR message_response != '--- {}\n'").all.each do |user| %>
+        <% User.where("town IS NOT NULL").all.each do |user| %>
         <tr class="<%= user.response? ? user.comes? ? "success" : "error" : nil %>">
           <td><%= user[:lastname]%></td>
           <td><%= user[:firstname]%></td>
+          <td><%= user[:street]%></td>
+          <td><%= user[:address_add]%></td>
+          <td><%= user[:zip_code]%></td>
+          <td><%= user[:town]%></td>
         </tr>
         <% end %>
       </tbody>

@@ -4,6 +4,7 @@ Wedding::Application.routes.draw do
   get "users/:id/edit/:object" => "users#edit", as: :edit_user 
   resources :users, except: [:new, :edit] do
     collection do
+      get :authentification
       post :authenticate
     end
   end
@@ -11,6 +12,16 @@ Wedding::Application.routes.draw do
   resources :songs
 
   resources :welcomes, only: [:index]
+  
+  namespace :admin do
+    resources :users, only: [:index] do
+      collection do
+        get :responses
+        get :addresses
+      end
+    end
+    root 'users#index'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

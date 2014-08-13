@@ -26,6 +26,7 @@
 
 require 'bcrypt'
 require 'yaml'
+require 'csv'
 
 class String
   def without_accent
@@ -62,13 +63,15 @@ class User < ActiveRecord::Base
 	def party; response[:party]; end
 	def set_response; self.presence = self.response.to_yaml; end
 	def response; @response ||= (self.presence ? YAML.load(presence) : {}); end
+  def response?; response.present?; end
+  def comes?; presence =~ /1/; end
 
 	def partner; @partner ||= User.find_by(id: partner_id) || self.persisted? && User.find_by(partner_id: self[:id]) || User.new; end
 	def partner=(partner); @partner = partner; end
 	def save_partner
-		if @partner.present?
-			partner = self.class.where(login: self.class.login(@partner)).first_or_create!
-			partner.update_attributes(@partner)
+		if partner[:firstname].present?
+			partner = self.class.where(login: self.class.login( partner)).first_or_create!
+			partner.save!
 			self[:partner_id] = partner[:id]
 		end
 		true
@@ -77,8 +80,14 @@ class User < ActiveRecord::Base
 	def set_login;	self[:login] ||= User.login(self);	end
 	def self.login(user_hash); "#{user_hash[:firstname]}#{user_hash[:lastname]}".without_accent.gsub(/\s+/, "");		end
 
+	def self.create_admin_user(password)
+		User.where(firstname: "admin", lastname: "admin", login: "admin").first_or_create!(password: password)
+	end
+	def self.admin_user
+    	find_by!(firstname: "admin", lastname: "admin", login: "admin")
+	end
 	def self.create_default_user(password)
-		create!(firstname: "default", lastname: "user", login: "default user", password: password)
+		User.where(firstname: "default", lastname: "user", login: "default user").first_or_create!(password: password)
 	end
 	def self.default_user
     	find_by!(firstname: "default", lastname: "user", login: "default user")
@@ -93,7 +102,30 @@ class User < ActiveRecord::Base
 		self[:encrypted_password] ||= BCrypt::Engine.hash_secret(@password, self[:salt])
 	end
 
-	def self.check_password(password)
+	def self.check_admin_password(password)
+		BCrypt::Engine.hash_secret(password, admin_user[:salt]) == admin_user[:encrypted_password]
+	end
+	def self.check_default_password(password)
 		BCrypt::Engine.hash_secret(password, default_user[:salt]) == default_user[:encrypted_password]
 	end
+  
+  
+  ##### EXPORT CSV
+  
+  ADDRESS_HEADER = ["Nom", "Prénom", "Rue", "Complément", "Ville", "Code postal", "Adresse internet", "Téléphone", "Nom", "Prénom", "Message"]
+  RESPONSE_HEADER = ["Nom", "Prénom", "Cérémonie", "Cocktail", "Dinner", "Soirée", "Nom", "Prénom", "Cérémonie", "Cocktail", "Dinner", "Soirée", "Message"]
+  
+  def self.addresses
+    CSV.generate( col_sep: ";") do |csv|
+      csv << ADDRESS_HEADER
+      User.where("town IS NOT NULL").all.each{ |user| csv << [user[:lastname], user[:firstname], user[:street], user[:address_add], user[:town], user[:zip_code], user[:email], user[:phone], user.partner.try(:lastname), user.partner.try(:firstname), user[:message_address],]} #
+    end
+  end
+  def self.responses
+    CSV.generate( col_sep: ";") do |csv|
+      csv << RESPONSE_HEADER
+      User.where("message_response != '--- {}\n'").all.each{ |user| csv << [user[:lastname], user[:firstname], user.wedding, user.cocktail, user.dinner, user.party, user.partner.try(:lastname), user.partner.try(:firstname), user.partner.try(:wedding), user.partner.try(:cocktail), user.partner.try(:dinner), user.partner.try(:party), user[:message_response],]} #
+    end
+  end
+  
 end

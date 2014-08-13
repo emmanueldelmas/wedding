@@ -15,16 +15,18 @@ protected
         return send_file @file_path, filename: @filename, type: "application/zip"
       end
     elsif csv_request?
+      return send_data @csv, filename: @filename, type: "text/csv", disposition: "attachment"
     elsif pdf_request?
       if @send_file
         return send_file @file_path, filename: @filename, type: "application/pdf", disposition: "inline"
       elsif @pdf
-        return send_data @pdf.render, :filename => @filename, :type => "application/pdf", disposition: "inline"
+        return send_data @pdf.render, filename: @filename, type: "application/pdf", disposition: "inline"
       end
     end
-    on_success =~ /redirect_to_/ ? redirect_to( send( on_success.gsub(/redirect_to_/, ""))) : render( on_success)
+    on_success =~ /redirect_to_/ ? redirect_to( send( on_success.to_s.gsub(/redirect_to_/, ""))) : render( on_success)
   rescue
-    on_rescue =~ /redirect_to_/ ? redirect_to( send( on_rescue.gsub(/redirect_to_/, ""))) : render( on_rescue) if on_rescue
+    raise if Rails.env.development?
+    on_rescue =~ /redirect_to_/ ? redirect_to( send( on_rescue.to_s.gsub(/redirect_to_/, ""))) : render( on_rescue) if on_rescue
     redirect_to welcomes_path
   end
   
@@ -39,6 +41,8 @@ private
     session[:authenticated] = @authenticated if @authenticated
     @authenticated ||= session[:authenticated]
   end
+  def authenticated?; @authenticated == "authentification de premier niveau"; end
+  def authenticated_filter; redirect_to authentification_users_path unless authenticated?; end
 
   def html_request?;    !csv_request? && !pdf_request?;  end
 

@@ -4,12 +4,12 @@
 class UsersController < ApplicationController
 
   def index
-    do_and_respond do 
+    do_and_respond(:index) do
     end
   end
 
   def show
-    do_and_respond(:show) do 
+    do_and_respond(:show) do
     end
   end
 
@@ -42,10 +42,16 @@ class UsersController < ApplicationController
     end
   end
   
+  def authentification
+    do_and_respond(:authentification, :index) do
+    end
+  end
+  
   def authenticate
     puts params[:password]
-    @authenticated = "authentification de premier niveau" if User.check_password(params[:password])
-    do_and_respond(:index) do
+    do_and_respond(:redirect_to_admin_path, :authentification) do
+      @authenticated = "authentification de premier niveau" if User.check_admin_password(params[:password])
+      raise "Utilisateur non authentifié" if @authenticated != "authentification de premier niveau"
     end
   end
 

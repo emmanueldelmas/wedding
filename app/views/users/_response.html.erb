@@ -6,8 +6,8 @@
 	<div class="you col-xs-12 col-sm-6 col-md-6 col-lg-6">
 		<h3>Vous</h3>
 		<div class="user_name">
-			<div class="form-group" id="firstname"><%= f.label "Prénom", for: "user_firstname" %><br /><%= f.text_field :firstname, placeholder: "Emmanuel", class: "form-control" %></div>
-			<div class="form-group" id="lastname"><%= f.label "Nom", for: "user_lastname" %><br /><%= f.text_field :lastname, placeholder: "Delmas", class: "form-control" %></div>
+			<div class="form-group" id="firstname"><%= f.label "Prénom", for: "user_firstname" %><br /><%= f.text_field :firstname, placeholder: "Emmanuel", class: "form-control", required: "required" %></div>
+			<div class="form-group" id="lastname"><%= f.label "Nom", for: "user_lastname" %><br /><%= f.text_field :lastname, placeholder: "Delmas", class: "form-control", required: "required" %></div>
 			<div class="form-group" id="email">
 				<%= f.label "Courriel", for: "user_email" %><br />
 				<div class="input-group">
@@ -80,7 +80,7 @@
 	<div class="user_message col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<br />
 		<h3>Un petit mot ?</h3>
-		<div class="" id="message_response"><%= f.text_area :message_response, placeholder: "Trop pressé d'être le jour J. On va s'éclater. Je vous kiff trop !", class: "form-control", rows: "3" %></div>
+		<div class="" id="message_response"><%= f.text_area :message_response, placeholder: "Trop pressé d'être le jour J. On va s'éclater. Je vous kiff trop !", class: "form-control", required: "required", rows: "3" %></div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<br />

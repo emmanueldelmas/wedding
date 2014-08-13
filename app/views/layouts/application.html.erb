@@ -54,7 +54,8 @@
       };
       var map = new google.maps.Map(document.getElementById("map-chateau"), mapOptions);
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'click', initialize);
+    $(document).ready(function(){initialize();});
   </script>
 
   <!--  -->
@@ -72,9 +73,9 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Adresse", new_user_path(:address) %></li>
+          <li><%= authenticated? ? link_to( "Adresses", addresses_admin_users_path(:csv)) : link_to( "Adresse", new_user_path(:address)) %></li>
           <li><%= link_to "Chants", songs_path %></li>
-          <li><%= link_to "Réponse", new_user_path(:response) %></li>
+          <li><%= authenticated? ? link_to( "Réponses", addresses_admin_users_path(:csv)) : link_to( "Réponse", new_user_path(:response)) %></li>
           <li><%= link_to "Trajet", welcomes_path %></li>
           <li><%= link_to "Soirée", welcomes_path %></li>
           <li><%= link_to "Liste", "http://www.millemercismariage.com/maloumanu/liste.html", target: "_blank" %></li>

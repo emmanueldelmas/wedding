@@ -3,8 +3,8 @@
 <div class="row main_grey">
 <%= form_for @current_user do |f| %>
 	<div class="user_name">
-		<div id="firstname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Prénom" %><br /><%= f.text_field :firstname, placeholder: "Emmanuel et Marie-Liesse", class: "form-control" %></div>
-		<div id="lastname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname, placeholder: "Delmas", class: "form-control" %></div>
+		<div id="firstname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Prénom" %><br /><%= f.text_field :firstname, placeholder: "Emmanuel", class: "form-control", required: "required" %></div>
+		<div id="lastname" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Nom_de_famille" %><br /><%= f.text_field :lastname, placeholder: "Delmas", class: "form-control", required: "required" %></div>
 	</div>
 	<div class="user_email_phone">
 		<div id="email" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Courriel" %><br />
@@ -15,12 +15,12 @@
 		<div id="phone" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Téléphone" %><br /><%= f.telephone_field :phone, class: "form-control" %></div>
 	</div>
 	<div class="user_address">
-			<div id="street" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12"><%= f.label "Numéro_et_voie" %><br /><%= f.text_field :street, placeholder: "5 rue Clodion", class: "form-control" %></div>
-			<div id="zip_code" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Code_postal" %><br /><%= f.text_field :zip_code, placeholder: "75015", class: "form-control" %></div>
-			<div id="town" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Ville" %><br /><%= f.text_field :town, placeholder: "Paris", class: "form-control" %></div>
+			<div id="street" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12"><%= f.label "Numéro_et_voie" %><br /><%= f.text_field :street, placeholder: "5 rue Clodion", class: "form-control", required: "required" %></div>
+			<div id="zip_code" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Code_postal" %><br /><%= f.text_field :zip_code, placeholder: "75015", class: "form-control", required: "required" %></div>
+			<div id="town" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"><%= f.label "Ville" %><br /><%= f.text_field :town, placeholder: "Paris", class: "form-control", required: "required" %></div>
 		</div>
 		<div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<label class="address_check_box"><%= check_box_tag :address_check_box %><%= label_tag "Je reconnais les informations ci-dessus comme exacte, et assure être domicilié à cette même adresse jusqu'en septembre 2014." %></label>
+			<label class="address_check_box"><%= check_box_tag :address_check_box, required: "required" %><%= label_tag "Je reconnais les informations ci-dessus comme exacte, et assure être domicilié à cette même adresse jusqu'en septembre 2014." %></label>
 		</div>
 	<div class="user_message col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="" id="message_addres"><%= f.label "Message" %><br /><%= f.text_area :message_address, placeholder: "Je suis trop heureuse pour vous ! C'est génial ce que vous faites.", class: "form-control", rows: "3" %></div>
