@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   
   def authenticate
     puts params[:password]
-    do_and_respond(:redirect_to_admin_path, :authentification) do
+    do_and_respond(:redirect_to_admin_users_path, :authentification) do
       @authenticated = "authentification de premier niveau" if User.check_admin_password(params[:password])
       raise "Utilisateur non authentifié" if @authenticated != "authentification de premier niveau"
     end

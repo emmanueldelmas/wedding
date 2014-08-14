@@ -49,7 +49,6 @@ group :development do
 	gem 'rspec-rails', '~> 2.14.1'
 	gem "factory_girl_rails", "~> 4.3.0"
 	gem 'annotate', '~> 2.6.1'
-  gem 'awesome_print'
 end
 
 group :test do
