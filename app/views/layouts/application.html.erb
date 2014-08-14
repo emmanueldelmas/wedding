@@ -4,11 +4,40 @@
   <title>Mariage Malou et Manu</title>
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
 <body class="">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Accueil", welcomes_path, class: "navbar-brand" %>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><%= authenticated? ? link_to( "Adresses", addresses_admin_users_path(:csv)) : link_to( "Adresse", new_user_path(:address)) %></li>
+          <li><%= link_to "Chants", songs_path %></li>
+          <li><%= authenticated? ? link_to( "Réponses", addresses_admin_users_path(:csv)) : link_to( "Réponse", new_user_path(:response)) %></li>
+          <li><%= link_to "Trajet", welcomes_path %></li>
+          <li><%= link_to "Soirée", welcomes_path %></li>
+          <li><%= link_to "Liste", "http://www.millemercismariage.com/maloumanu/liste.html", target: "_blank" %></li>
+          <li><%= link_to "Photos", welcomes_path %></li>
+        </ul>
+        <p class="navbar-text navbar-right" id="countdown"></p>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+  
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= yield :script %>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -43,50 +72,31 @@
   </script>
   <script type="text/javascript">
     function initialize() {
+      var egliseLatlng = new google.maps.LatLng(48.804277,2.146196)
       var mapOptions = {
-        center: new google.maps.LatLng(48.804277,2.146196),
+        center: egliseLatlng,
         zoom: 13
       };
-      var map = new google.maps.Map(document.getElementById("map-eglise"), mapOptions);
+      var map_eglise = new google.maps.Map(document.getElementById("map-eglise"), mapOptions);
+      var marker = new google.maps.Marker({
+        position: egliseLatlng,
+        map: map_eglise,
+        title: 'Eglise'
+      });
+      var chateauLatlng = new google.maps.LatLng(48.317922,1.990113)
       var mapOptions = {
-        center: new google.maps.LatLng(48.317922,1.990113),
+        center: chateauLatlng,
         zoom: 10
       };
-      var map = new google.maps.Map(document.getElementById("map-chateau"), mapOptions);
+      var map_chateau = new google.maps.Map(document.getElementById("map-chateau"), mapOptions);
+      var marker = new google.maps.Marker({
+        position: chateauLatlng,
+        map: map_chateau,
+        title: 'Chateau'
+      });
     }
     google.maps.event.addDomListener(window, 'click', initialize);
     $(document).ready(function(){initialize();});
   </script>
-
-  <!--  -->
-
-  <nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to "Accueil", welcomes_path, class: "navbar-brand" %>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><%= authenticated? ? link_to( "Adresses", addresses_admin_users_path(:csv)) : link_to( "Adresse", new_user_path(:address)) %></li>
-          <li><%= link_to "Chants", songs_path %></li>
-          <li><%= authenticated? ? link_to( "Réponses", addresses_admin_users_path(:csv)) : link_to( "Réponse", new_user_path(:response)) %></li>
-          <li><%= link_to "Trajet", welcomes_path %></li>
-          <li><%= link_to "Soirée", welcomes_path %></li>
-          <li><%= link_to "Liste", "http://www.millemercismariage.com/maloumanu/liste.html", target: "_blank" %></li>
-          <li><%= link_to "Photos", welcomes_path %></li>
-        </ul>
-        <p class="navbar-text navbar-right" id="countdown"></p>
-      </div>
-    </div>
-  </nav>
-  <div class="container-fluid">
-    <%= yield %>
-  </div>
 </body>
 </html>

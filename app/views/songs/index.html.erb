@@ -1,30 +1,3 @@
-<% content_for :script do %>
-<script type="text/javascript">
-	$(document).ready(function(){
-		new jPlayerPlaylist({
-			jPlayer: "#jquery_jplayer_1",
-			cssSelectorAncestor: "#jp_container_1"
-		}, [
-			{
-				<%= Song.all.collect{|song| %Q{title:\"#{song.title} - #{song.type}\", mp3:\"#{audio_path(song.name+".mp3")}\", oga:\"#{audio_path(song.name+".ogg")}\"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
-			}
-		], {
-			swfPath: "../js",
-			supplied: "oga, mp3",
-			wmode: "window",
-			smoothPlayBar: true,
-			keyEnabled: true
-		});
-		$("div.words").hide();
-		$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(){
-			$name = $("audio").attr('src').split(/\//).pop().split(/\./).shift();
-			$("div.words").hide();
-			$("div.words#"+$name).show();
-		});
-	});
-</script>
-<% end %>
-
 <h1>Chants de la messe</h1>
 <p>Je répète pour la chorale, je <%= link_to "télécharge toutes les partitions", songs_path("zip"), target: "_blank" %></p>
 
@@ -84,3 +57,29 @@
 	</div>
 </div>
 
+<% content_for :script do %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		new jPlayerPlaylist({
+			jPlayer: "#jquery_jplayer_1",
+			cssSelectorAncestor: "#jp_container_1"
+		}, [
+			{
+				<%= Song.all.collect{|song| %Q{title:\"#{song.title} - #{song.type}\", mp3:\"#{audio_path(song.name+".mp3")}\", oga:\"#{audio_path(song.name+".ogg")}\"} }.join("\n\t\t}, {\n\t\t\t").html_safe %>
+			}
+		], {
+			swfPath: "../js",
+			supplied: "oga, mp3",
+			wmode: "window",
+			smoothPlayBar: true,
+			keyEnabled: true
+		});
+		$("div.words").hide();
+		$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(){
+			$name = $("audio").attr('src').split(/\//).pop().split(/\./).shift();
+			$("div.words").hide();
+			$("div.words#"+$name).show();
+		});
+	});
+</script>
+<% end %>
