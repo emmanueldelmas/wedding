@@ -40,8 +40,6 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'awesome_print'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -51,6 +49,7 @@ group :development do
 	gem 'rspec-rails', '~> 2.14.1'
 	gem "factory_girl_rails", "~> 4.3.0"
 	gem 'annotate', '~> 2.6.1'
+  gem 'awesome_print'
 end
 
 group :test do
