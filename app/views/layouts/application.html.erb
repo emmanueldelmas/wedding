@@ -21,13 +21,16 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><%= authenticated? ? link_to( "Adresses", addresses_admin_users_path(:csv)) : link_to( "Adresse", new_user_path(:address)) %></li>
           <li><%= link_to "Chants", songs_path %></li>
-          <li><%= authenticated? ? link_to( "Réponses", addresses_admin_users_path(:csv)) : link_to( "Réponse", new_user_path(:response)) %></li>
+          <li><%= link_to "Réponse", new_user_path(:response) %></li>
           <li><%= link_to "Trajet", welcomes_path %></li>
           <li><%= link_to "Soirée", welcomes_path %></li>
           <li><%= link_to "Liste", "http://www.millemercismariage.com/maloumanu/liste.html", target: "_blank" %></li>
           <li><%= link_to "Photos", welcomes_path %></li>
+          <% if authenticated? %>
+          <li><%= link_to( "Adresses", addresses_admin_users_path(:csv)) %></li>
+          <li><%= link_to( "Réponses", addresses_admin_users_path(:csv)) %></li>
+          <% end %>
         </ul>
         <p class="navbar-text navbar-right" id="countdown"></p>
       </div>
@@ -81,7 +84,7 @@
       var marker = new google.maps.Marker({
         position: egliseLatlng,
         map: map_eglise,
-        title: 'Eglise'
+        title: "Église Saint-Symphorien\n2 Place Saint-Symphorien, 78000 Versailles"
       });
       var chateauLatlng = new google.maps.LatLng(48.317922,1.990113)
       var mapOptions = {
@@ -92,7 +95,7 @@
       var marker = new google.maps.Marker({
         position: chateauLatlng,
         map: map_chateau,
-        title: 'Chateau'
+        title: "Chateau de Dommerville\n55 Rue de la Plaine, 91670 Angerville"
       });
     }
     google.maps.event.addDomListener(window, 'click', initialize);
