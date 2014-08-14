@@ -5,7 +5,7 @@ namespace :application do
   
   APPLICATION_FILES = [
     ".ruby-version", ".ruby-gemset", "app", "config", "config.ru", "db", "Gemfile", "Gemfile.lock",
-    "lib", "log", "public", "Rakefile", "spec", "tmp", "vendor/assets"
+    "lib", "log", "public", "Rakefile", "spec", "tmp", "vendor"
   ]
   
   task :install do
