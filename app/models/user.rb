@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   def response?; response.present?; end
   def comes?; presence =~ /1/; end
 
-	def partner; @partner ||= User.find_by(id: partner_id) || self.persisted? && User.find_by(partner_id: self[:id]) || User.new; end
+	def partner; @partner ||= User.find_by(id: self[:partner_id]) || self.persisted? && User.find_by(partner_id: self[:id]) || User.new; end
 	def partner=(partner); @partner = partner; end
 	def save_partner
 		if partner[:firstname].present?
@@ -81,13 +81,13 @@ class User < ActiveRecord::Base
 	def self.login(user_hash); "#{user_hash[:firstname]}#{user_hash[:lastname]}".without_accent.gsub(/\s+/, "");		end
 
 	def self.create_admin_user(password)
-		User.where(firstname: "admin", lastname: "admin", login: "admin").first_or_create!(password: password)
+		User.where(firstname: "admin", lastname: "admin", login: "admin").first_or_initialize(password: password).save!
 	end
 	def self.admin_user
     	find_by!(firstname: "admin", lastname: "admin", login: "admin")
 	end
 	def self.create_default_user(password)
-		User.where(firstname: "default", lastname: "user", login: "default user").first_or_create!(password: password)
+		User.where(firstname: "default", lastname: "user", login: "default user").first_or_initialize(password: password).save!
 	end
 	def self.default_user
     	find_by!(firstname: "default", lastname: "user", login: "default user")
