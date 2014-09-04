@@ -29,7 +29,7 @@
           <li><%= link_to "Photos", welcomes_path %></li>
           <% if authenticated? %>
           <li><%= link_to( "Adresses", addresses_admin_users_path(:csv)) %></li>
-          <li><%= link_to( "Réponses", addresses_admin_users_path(:csv)) %></li>
+          <li><%= link_to( "Réponses", responses_admin_users_path(:csv)) %></li>
           <% end %>
         </ul>
         <p class="navbar-text navbar-right" id="countdown"></p>

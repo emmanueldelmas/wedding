@@ -5,23 +5,29 @@ class Admin::UsersController < ApplicationController
   
   before_action :authenticated_filter
   
-  def index
-    addresses
-  end
   def addresses
-    do_and_respond(:index) do
+    do_and_respond(:addresses) do
       if csv_request?
         @csv = User.addresses
         @filename = "adresses.csv"
+      else
+        @users = User.users_with_address
       end
     end
   end
   def responses
-    do_and_respond(:index) do
+    do_and_respond(:responses) do
       if csv_request?
         @csv = User.responses
         @filename = "responses.csv"
+      else
+        @users = User.users_with_response
       end
+    end
+  end
+  def messages
+    do_and_respond(:messages) do
+      @users = User.all
     end
   end
 

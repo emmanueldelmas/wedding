@@ -14,13 +14,14 @@ Wedding::Application.routes.draw do
   resources :welcomes, only: [:index]
   
   namespace :admin do
-    resources :users, only: [:index] do
+    resources :users, only: [] do
       collection do
         get :responses
         get :addresses
+        get :messages
       end
     end
-    root 'users#index'
+    root 'users#responses'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,33 @@
+<h2 class="text-center">Administration des invités</h2>
+<div class="row main_grey">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+    <%= link_to "Adresses", addresses_admin_users_path %>
+    <%= link_to "Messages", messages_admin_users_path %>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Cérémonie</th>
+          <th>Cocktail</th>
+          <th>Diner</th>
+          <th>Soirée</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr class="<%= user.response? ? user.comes? ? "success" : "error" : nil %>">
+          <td><%= user[:lastname] %></td>
+          <td><%= user[:firstname] %></td>
+          <td><%= user.wedding ? "1" : nil %></td>
+          <td><%= user.cocktail ? "1" : nil %></td>
+          <td><%= user.dinner ? "1" : nil %></td>
+          <td><%= user.party ? "1" : nil %></td>
+          <td><%= user[:message_response] %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

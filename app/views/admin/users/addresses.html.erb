@@ -1,6 +1,8 @@
 <h2 class="text-center">Administration des invités</h2>
 <div class="row main_grey">
   <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+    <%= link_to "Réponses", responses_admin_users_path %>
+    <%= link_to "Messages", messages_admin_users_path %>
     <table class="table table-condensed">
       <thead>
         <tr>
@@ -10,10 +12,11 @@
           <th>Complément</th>
           <th>Code postal</th>
           <th>Ville</th>
+          <th>Message</th>
         </tr>
       </thead>
       <tbody>
-        <% User.where("town IS NOT NULL").all.each do |user| %>
+        <% @users.each do |user| %>
         <tr class="<%= user.response? ? user.comes? ? "success" : "error" : nil %>">
           <td><%= user[:lastname]%></td>
           <td><%= user[:firstname]%></td>
@@ -21,6 +24,7 @@
           <td><%= user[:address_add]%></td>
           <td><%= user[:zip_code]%></td>
           <td><%= user[:town]%></td>
+          <td><%= user[:message_address]%></td>
         </tr>
         <% end %>
       </tbody>

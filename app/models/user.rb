@@ -81,13 +81,13 @@ class User < ActiveRecord::Base
 	def self.login(user_hash); "#{user_hash[:firstname]}#{user_hash[:lastname]}".without_accent.gsub(/\s+/, "");		end
 
 	def self.create_admin_user(password)
-		User.where(firstname: "admin", lastname: "admin", login: "admin").first_or_initialize(password: password).save!
+		User.where(firstname: "admin", lastname: "admin", login: "admin").first_or_create!.update_attributes!(password: password)
 	end
 	def self.admin_user
     	find_by!(firstname: "admin", lastname: "admin", login: "admin")
 	end
 	def self.create_default_user(password)
-		User.where(firstname: "default", lastname: "user", login: "default user").first_or_initialize(password: password).save!
+		User.where(firstname: "default", lastname: "user", login: "default user").first_or_create!.update_attributes!(password: password)
 	end
 	def self.default_user
     	find_by!(firstname: "default", lastname: "user", login: "default user")
@@ -98,8 +98,8 @@ class User < ActiveRecord::Base
 	end
 
 	def cypher_password
-		self[:salt] ||= BCrypt::Engine.generate_salt
-		self[:encrypted_password] ||= BCrypt::Engine.hash_secret(@password, self[:salt])
+		self[:salt] = BCrypt::Engine.generate_salt
+		self[:encrypted_password] = BCrypt::Engine.hash_secret(@password, self[:salt])
 	end
 
 	def self.check_admin_password(password)
@@ -115,16 +115,18 @@ class User < ActiveRecord::Base
   ADDRESS_HEADER = ["Nom", "Prénom", "Rue", "Complément", "Ville", "Code postal", "Adresse internet", "Téléphone", "Nom", "Prénom", "Message"]
   RESPONSE_HEADER = ["Nom", "Prénom", "Cérémonie", "Cocktail", "Dinner", "Soirée", "Nom", "Prénom", "Cérémonie", "Cocktail", "Dinner", "Soirée", "Message"]
   
+  def self.users_with_address; User.where("town IS NOT NULL").all; end
   def self.addresses
     CSV.generate( col_sep: ";") do |csv|
       csv << ADDRESS_HEADER
-      User.where("town IS NOT NULL").all.each{ |user| csv << [user[:lastname], user[:firstname], user[:street], user[:address_add], user[:town], user[:zip_code], user[:email], user[:phone], user.partner.try(:lastname), user.partner.try(:firstname), user[:message_address],]} #
+      User.users_with_address.each{ |user| csv << [user[:lastname], user[:firstname], user[:street], user[:address_add], user[:town], user[:zip_code], user[:email], user[:phone], user.partner.try(:lastname), user.partner.try(:firstname), user[:message_address],]} #
     end
   end
+  def self.users_with_response; User.where("message_response != '--- {}\n'").all; end
   def self.responses
     CSV.generate( col_sep: ";") do |csv|
       csv << RESPONSE_HEADER
-      User.where("message_response != '--- {}\n'").all.each{ |user| csv << [user[:lastname], user[:firstname], user.wedding, user.cocktail, user.dinner, user.party, user.partner.try(:lastname), user.partner.try(:firstname), user.partner.try(:wedding), user.partner.try(:cocktail), user.partner.try(:dinner), user.partner.try(:party), user[:message_response],]} #
+      User.users_with_response.each{ |user| csv << [user[:lastname], user[:firstname], user.wedding, user.cocktail, user.dinner, user.party, user.partner.try(:lastname), user.partner.try(:firstname), user.partner.try(:wedding), user.partner.try(:cocktail), user.partner.try(:dinner), user.partner.try(:party), user[:message_response],]} #
     end
   end
   
