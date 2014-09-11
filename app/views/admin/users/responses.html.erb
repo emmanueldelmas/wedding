@@ -20,10 +20,10 @@
         <tr class="<%= user.response? ? user.comes? ? "success" : "error" : nil %>">
           <td><%= user[:lastname] %></td>
           <td><%= user[:firstname] %></td>
-          <td><%= user.wedding ? "1" : nil %></td>
-          <td><%= user.cocktail ? "1" : nil %></td>
-          <td><%= user.dinner ? "1" : nil %></td>
-          <td><%= user.party ? "1" : nil %></td>
+          <td><%= user.wedding == "1" ? "1" : nil %></td>
+          <td><%= user.cocktail == "1" ? "1" : nil %></td>
+          <td><%= user.dinner == "1" ? "1" : nil %></td>
+          <td><%= user.party == "1" ? "1" : nil %></td>
           <td><%= user[:message_response] %></td>
         </tr>
         <% end %>

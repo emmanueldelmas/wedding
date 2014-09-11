@@ -30,20 +30,15 @@ require 'csv'
 
 class String
   def without_accent
-    gsub(/[ÀÁÂÃÄáàâäã]/, "a")
-    gsub(/[Çç]/, "c")
-    gsub(/[ÈÉÊËẼéèêëẽ]/, "e")
-    gsub(/[ÌÍÎÏĨîïíĩì]/, "i")
-    gsub(/[ÒÓÔÕÖôöóòõ]/, "i")
-    gsub(/[ÙÚÛÜŨùúûüũ]/, "i")
-    titleize
+    gsub(/[ÀÁÂÃÄáàâäã]/, "a").gsub(/[Çç]/, "c").gsub(/[ÈÉÊËẼéèêëẽ]/, "e").gsub(/[ÌÍÎÏĨîïíĩì]/, "i").gsub(/[ÒÓÔÕÖôöóòõ]/, "i").gsub(/[ÙÚÛÜŨùúûüũ]/, "i").titleize
   end
 end
 
 class User < ActiveRecord::Base
 	before_validation :cypher_password, if: :password
 	before_validation :set_login
-	before_save :set_response, :save_partner
+  before_save :set_response
+	after_save :save_partner
 
 	validates_uniqueness_of :login
 	validates_presence_of :login
@@ -66,19 +61,19 @@ class User < ActiveRecord::Base
   def response?; response.present?; end
   def comes?; presence =~ /1/; end
 
-	def partner; @partner ||= User.find_by(id: self[:partner_id]) || self.persisted? && User.find_by(partner_id: self[:id]) || User.new; end
+	def partner; @partner ||= User.new; end
 	def partner=(partner); @partner = partner; end
 	def save_partner
 		if partner[:firstname].present?
-			partner = self.class.where(login: self.class.login( partner)).first_or_create!
-			partner.save!
-			self[:partner_id] = partner[:id]
+			self.class.where(login: self.class.login( partner)).first_or_create!.update_attributes!(partner)
 		end
 		true
+  rescue
+    true
 	end
 
 	def set_login;	self[:login] ||= User.login(self);	end
-	def self.login(user_hash); "#{user_hash[:firstname]}#{user_hash[:lastname]}".without_accent.gsub(/\s+/, "");		end
+	def self.login(user_hash); puts user_hash[:firstname]; "#{user_hash[:firstname]}#{user_hash[:lastname]}".without_accent.gsub(/\s+/, "");		end
 
 	def self.create_admin_user(password)
 		User.where(firstname: "admin", lastname: "admin", login: "admin").first_or_create!.update_attributes!(password: password)
@@ -122,7 +117,7 @@ class User < ActiveRecord::Base
       User.users_with_address.each{ |user| csv << [user[:lastname], user[:firstname], user[:street], user[:address_add], user[:town], user[:zip_code], user[:email], user[:phone], user.partner.try(:lastname), user.partner.try(:firstname), user[:message_address],]} #
     end
   end
-  def self.users_with_response; User.where("message_response != '--- {}\n'").all; end
+  def self.users_with_response; User.where("presence != '--- {}\n'").all; end
   def self.responses
     CSV.generate( col_sep: ";") do |csv|
       csv << RESPONSE_HEADER
